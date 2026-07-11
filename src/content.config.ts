@@ -58,4 +58,24 @@ const episodios = defineCollection({
   }),
 });
 
-export const collections = { personajes, capitulos, episodios };
+const galeria = defineCollection({
+  loader: file('src/data/galeria.json', {
+    parser: (texto) =>
+      JSON.parse(texto).map(
+        (registro: { imagen_url: string }, indice: number) => ({
+          id: String(indice),
+          ...registro,
+        }),
+      ),
+  }),
+  schema: z.object({
+    id: z.string(),
+    imagen_url: z.string().url(),
+    titulo: z.string(),
+    descripcion: z.string(),
+    fuente: z.string(),
+    url_fuente: z.string().url(),
+  }),
+});
+
+export const collections = { personajes, capitulos, episodios, galeria };

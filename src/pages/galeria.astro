@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import Galeria from '../components/Galeria.tsx';
+
+const galeria = await getCollection('galeria');
+const items = galeria.map(({ data }) => ({
+  imagen_url: data.imagen_url,
+  titulo: data.titulo,
+  descripcion: data.descripcion,
+  fuente: data.fuente,
+  url_fuente: data.url_fuente,
+}));
+---
+
+<Base
+  titulo="Galería"
+  descripcion="Galería de imágenes de Rooster Fighter: portadas, banners y retratos de Keiji y los demás personajes, con visor a pantalla completa."
+>
+  <section class="hero">
+    <p class="hero-kicker">Portadas, banners y retratos</p>
+    <h1>Galería</h1>
+    <p class="hero-texto">
+      {items.length} imágenes de <strong>Rooster Fighter</strong> recogidas de AniList y Fandom.
+      Toca cualquier miniatura para verla completa.
+    </p>
+  </section>
+
+  <Galeria items={items} client:load />
+</Base>

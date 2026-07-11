@@ -1067,3 +1067,312 @@ a.card p {
   background-color: var(--color-carbon);
   color: var(--texto-invertido);
 }
+
+/* ==========================================================================
+   ITERACIÓN 4 — Página /capitulos/ (manga por volúmenes + episodios anime)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   META DE SECCIÓN — contador bajo el .seccion-titulo
+   --------------------------------------------------------------------------
+   Uso (justo después del h2 de sección):
+
+   <h2 class="seccion-titulo">Manga</h2>
+   <p class="seccion-meta">58 capítulos · 12 volúmenes</p>
+
+   El margen negativo lo pega al título, compensando el margin-bottom
+   grande que trae .seccion-titulo.
+   -------------------------------------------------------------------------- */
+.seccion-meta {
+  margin-top: calc(-1 * var(--espacio-4));
+  margin-bottom: var(--espacio-5);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medio);
+  letter-spacing: 0.04em;
+  color: var(--texto-suave); /* humo: AA sobre papel (≈5:1) */
+}
+
+/* --------------------------------------------------------------------------
+   TABLA DE CAPÍTULOS — <details> por volumen, colapsable sin JS
+   --------------------------------------------------------------------------
+   Estructura HTML esperada (un <details> por volumen; abrir el primero
+   con el atributo `open` si se quiere contenido visible al llegar):
+
+   <div class="tabla-capitulos">
+     <details class="volumen" open>
+       <summary class="volumen__resumen">
+         <span class="volumen__nombre">Volumen 1</span>
+         <span class="volumen__contador">5 capítulos</span>
+       </summary>
+       <ol class="volumen__lista">
+         <li class="capitulo">
+           <span class="capitulo__numero" aria-hidden="true">01</span>
+           <div class="capitulo__textos">
+             <p class="capitulo__titulo">El ave que combate demonios</p>
+             <p class="capitulo__titulo-jp" lang="ja">獣聚鳥散 <span lang="ja-Latn">(Yūshūchōsan)</span></p>
+             <p class="capitulo__sinopsis">El capítulo comienza con…</p>
+           </div>
+         </li>
+         <!-- capítulos sin sinopsis: se omite <p class="capitulo__sinopsis"> -->
+       </ol>
+     </details>
+     … Volumen 2 a 12 …
+   </div>
+
+   Notas:
+   - <ol> semántico: los capítulos están numerados; la numeración visual
+     la da .capitulo__numero, así que se apaga el marcador nativo.
+   - El icono ▸ es un ::before del summary que rota 90° con [open];
+     se apaga el marker nativo del summary en ambos motores.
+   -------------------------------------------------------------------------- */
+.tabla-capitulos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-3);
+}
+
+.volumen {
+  border: 2px solid var(--color-tinta);
+  border-radius: var(--radio-md);
+  background-color: var(--superficie);
+  box-shadow: var(--sombra-sm);
+  overflow: hidden; /* el summary respeta las esquinas redondeadas */
+}
+
+/* Barra de resumen del volumen */
+.volumen__resumen {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-3);
+  padding: var(--espacio-3) var(--espacio-4);
+  cursor: pointer;
+  font-family: var(--fuente-display);
+  font-weight: var(--peso-negrita);
+  background-color: var(--superficie-hundida);
+  transition: background-color var(--transicion);
+  /* Apaga el marker nativo (Firefox y resto) */
+  list-style: none;
+}
+
+.volumen__resumen::-webkit-details-marker {
+  display: none; /* apaga el marker nativo en WebKit antiguos */
+}
+
+/* Icono ▸ propio: rota a ▾ cuando el volumen está abierto */
+.volumen__resumen::before {
+  content: "▸";
+  color: var(--acento);
+  font-size: var(--texto-md);
+  line-height: 1;
+  transition: transform var(--transicion);
+}
+
+.volumen[open] > .volumen__resumen::before {
+  transform: rotate(90deg);
+}
+
+.volumen__resumen:hover {
+  background-color: var(--color-papel);
+}
+
+/* Foco visible dentro del contorno de la card (el overflow:hidden del
+   details recortaría un outline exterior) */
+.volumen__resumen:focus-visible {
+  outline: 3px solid var(--anillo-foco);
+  outline-offset: -3px;
+}
+
+.volumen__nombre {
+  font-size: var(--texto-md);
+}
+
+/* Contador de capítulos, alineado a la derecha de la barra */
+.volumen__contador {
+  margin-left: auto;
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medio);
+  color: var(--texto-secundario);
+}
+
+/* Lista de capítulos dentro del volumen */
+.volumen__lista {
+  list-style: none; /* la numeración visual la da .capitulo__numero */
+  margin: 0;
+  padding: var(--espacio-2) var(--espacio-4);
+  border-top: 2px solid var(--color-tinta);
+}
+
+.capitulo {
+  display: flex;
+  align-items: baseline;
+  gap: var(--espacio-3);
+  padding-block: var(--espacio-3);
+}
+
+.capitulo + .capitulo {
+  border-top: 1px solid var(--borde);
+}
+
+/* Número de capítulo en rojo cresta, ancho fijo para alinear la columna */
+.capitulo__numero {
+  flex-shrink: 0;
+  min-width: 2.2ch;
+  font-family: var(--fuente-display);
+  font-size: var(--texto-md);
+  font-weight: var(--peso-display);
+  color: var(--texto-acento); /* rojo cresta oscuro: AA sobre superficie */
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.capitulo__textos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-1);
+}
+
+.capitulo__titulo {
+  font-weight: var(--peso-medio);
+  color: var(--texto);
+}
+
+/* Título japonés + romaji, pequeño y en humo */
+.capitulo__titulo-jp {
+  font-size: var(--texto-sm);
+  color: var(--texto-suave);
+}
+
+/* Sinopsis (solo existe en los capítulos 1-5): humo, tamaño contenido */
+.capitulo__sinopsis {
+  font-size: var(--texto-sm);
+  color: var(--texto-suave);
+  max-width: 65ch;
+}
+
+@media (min-width: 640px) {
+  .volumen__resumen {
+    padding: var(--espacio-4) var(--espacio-5);
+  }
+
+  .volumen__lista {
+    padding-inline: var(--espacio-5);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   LISTA DE EPISODIOS (anime) — filas generosas, apiladas en móvil
+   --------------------------------------------------------------------------
+   Estructura HTML esperada:
+
+   <ol class="lista-episodios">
+     <li class="episodio">
+       <span class="episodio__numero" aria-hidden="true">01</span>
+       <div class="episodio__cuerpo">
+         <h3 class="episodio__titulo">Un gallo entre grullas</h3>
+         <p class="episodio__titulo-jp" lang="ja">群鶏一鶴 <span lang="ja-Latn">(Gunkeinoikkaku)</span></p>
+         <p class="episodio__fechas">
+           <span>Estreno EE. UU.: <time datetime="2026-03-15">15 mar 2026</time></span>
+           <span>Japón: <time datetime="2026-04-06">6 abr 2026</time></span>
+         </p>
+         <p class="episodio__sinopsis">Un gallo rescata a un niño…</p>
+       </div>
+     </li>
+     …
+   </ol>
+
+   Responsive: en móvil el número queda arriba a la izquierda del bloque;
+   en ≥640px la fila gana aire y el número crece como cifra de portada.
+   -------------------------------------------------------------------------- */
+.lista-episodios {
+  list-style: none; /* numeración visual con .episodio__numero */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-4);
+}
+
+/* Cada episodio es una card horizontal */
+.episodio {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espacio-4);
+  padding: var(--espacio-4);
+  background-color: var(--superficie);
+  border: 2px solid var(--color-tinta);
+  border-radius: var(--radio-md);
+  box-shadow: var(--sombra-sm);
+}
+
+/* Número grande estilo cifra de portada, en rojo cresta */
+.episodio__numero {
+  flex-shrink: 0;
+  min-width: 2ch;
+  font-family: var(--fuente-display);
+  font-size: var(--texto-2xl);
+  font-weight: var(--peso-display);
+  line-height: 1;
+  color: var(--texto-acento);
+  font-variant-numeric: tabular-nums;
+}
+
+.episodio__cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+}
+
+.episodio__titulo {
+  font-size: var(--texto-lg);
+}
+
+.episodio__titulo-jp {
+  font-size: var(--texto-sm);
+  color: var(--texto-suave);
+}
+
+/* Fechas de emisión: metadatos pequeños separados con un punto rojo */
+.episodio__fechas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-1) var(--espacio-4);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-medio);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+}
+
+.episodio__fechas span {
+  position: relative;
+}
+
+/* Punto separador entre fechas (solo desde la segunda) */
+.episodio__fechas span + span::before {
+  content: "•";
+  position: absolute;
+  left: calc(-1 * var(--espacio-3));
+  color: var(--acento);
+}
+
+.episodio__sinopsis {
+  font-size: var(--texto-sm);
+  color: var(--texto-secundario);
+  max-width: 65ch;
+}
+
+@media (min-width: 640px) {
+  .lista-episodios {
+    gap: var(--espacio-5);
+  }
+
+  .episodio {
+    gap: var(--espacio-5);
+    padding: var(--espacio-5) var(--espacio-6);
+  }
+
+  .episodio__numero {
+    font-size: var(--texto-hero);
+  }
+}

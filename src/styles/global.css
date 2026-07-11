@@ -1846,3 +1846,156 @@ a.card p {
     transition: none;
   }
 }
+
+/* ==========================================================================
+   ITERACIÓN 6 — Página /videos/ (embeds oficiales de YouTube)
+   ==========================================================================
+   Fuente de datos: src/data/videos.json (5 registros con youtube_id, titulo,
+   descripcion, canal, fuente). Solo se embebe contenido oficial de YouTube
+   vía youtube-nocookie.com — nunca se descarga ni se sirve video propio.
+   Los embeds de YouTube son intrínsecamente horizontales (16:9), así que
+   el grid se limita a 2 columnas como máximo: con 3+ columnas, dentro del
+   ancho máximo de .contenedor (72rem), cada reproductor quedaría con menos
+   de ~23rem de ancho y el video se vería diminuto e incómodo de ver/oír.
+   Con 2 columnas cada tarjeta ronda ~34rem de ancho en escritorio, que es
+   un tamaño de reproducción cómodo, así que NO se agrega un tercer nivel
+   de columnas en ≥960px (a diferencia de los otros grids del sitio).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   VIDEOS-GRID — 1 columna en móvil, 2 columnas en ≥640px
+   --------------------------------------------------------------------------
+   Estructura HTML esperada (ver .video-card más abajo para cada tarjeta):
+
+   <div class="videos-grid">
+     <article class="video-card">…</article>
+     <article class="video-card">…</article>
+     … 5 tarjetas, una por registro de videos.json …
+   </div>
+   -------------------------------------------------------------------------- */
+.videos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espacio-4);
+  padding-block: var(--espacio-5);
+}
+
+@media (min-width: 640px) {
+  .videos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--espacio-5);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   VIDEO-CARD — tarjeta con embed de YouTube responsivo + metadatos
+   --------------------------------------------------------------------------
+   Estructura HTML esperada por tarjeta (youtube_id, titulo, canal y
+   descripcion vienen de videos.json; la URL de embed usa el dominio
+   youtube-nocookie.com, la variante de YouTube sin cookies de rastreo
+   hasta que el usuario interactúa con el reproductor):
+
+   <article class="video-card">
+     <div class="video-card__embed">
+       <iframe
+         class="video-card__iframe"
+         src="https://www.youtube-nocookie.com/embed/5hRrvJ08ZSs"
+         title="Official Anime Trailer | Rooster Fighter | VIZ"
+         loading="lazy"
+         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+         referrerpolicy="strict-origin-when-cross-origin"
+         allowfullscreen
+       ></iframe>
+     </div>
+     <div class="video-card__cuerpo">
+       <h3 class="video-card__titulo">Official Anime Trailer | Rooster Fighter | VIZ</h3>
+       <p class="video-card__canal">vizmedia</p>
+       <p class="video-card__texto">
+         Tráiler oficial en inglés del anime Rooster Fighter, publicado por
+         VIZ Media…
+       </p>
+     </div>
+   </article>
+
+   Notas:
+   - El `title` del iframe es obligatorio para accesibilidad (nombre
+     accesible del frame para lectores de pantalla): usar el `titulo` del
+     JSON tal cual.
+   - `loading="lazy"` difiere la carga del iframe hasta que se acerca al
+     viewport — con 5 embeds en la página evita 5 conexiones a YouTube de
+     entrada.
+   - .video-card__canal puede mostrar solo el nombre del canal (recortando
+     la URL entre paréntesis que trae canal en el JSON) o envolverlo en un
+     <a href="https://www.youtube.com/@vizmedia">; cualquiera de las dos
+     rutas es válida, el estilo de metadato no cambia.
+   -------------------------------------------------------------------------- */
+.video-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--superficie);
+  border: 2px solid var(--color-tinta); /* mismo borde de viñeta que .card */
+  border-radius: var(--radio-md);
+  box-shadow: var(--sombra-sm); /* misma sombra base que .card */
+  overflow: hidden; /* recorta el embed a las esquinas redondeadas */
+  transition: box-shadow var(--transicion), transform var(--transicion);
+}
+
+/* La tarjeta no es interactiva en sí (el iframe sí lo es): igual se le da
+   un leve "salto" de viñeta en hover, consistente con el resto del sitio,
+   sin robarle foco al iframe (no se toca su :focus-visible interno). */
+.video-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--sombra-vineta);
+}
+
+/* Wrapper responsivo del iframe: técnica de aspect-ratio + position para
+   que el embed de YouTube nunca rompa el layout ni se estire fuera de
+   proporción, sea cual sea el ancho de la columna. */
+.video-card__embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: var(--color-noche); /* letterbox mientras carga el iframe */
+  border-bottom: 2px solid var(--color-tinta);
+}
+
+.video-card__iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-card__cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+  padding: var(--espacio-4);
+  flex: 1;
+}
+
+.video-card__titulo {
+  font-size: var(--texto-lg);
+}
+
+/* Canal: metadato pequeño en rojo cresta oscuro, mismo tratamiento que
+   .card__meta (mayúsculas, tracking abierto) */
+.video-card__canal {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-negrita);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texto-acento);
+}
+
+.video-card__texto {
+  font-size: var(--texto-sm);
+  color: var(--texto-secundario);
+}
+
+@media (min-width: 640px) {
+  .video-card__cuerpo {
+    padding: var(--espacio-5);
+  }
+}

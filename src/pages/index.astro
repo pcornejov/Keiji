@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Base titulo="Inicio">
+  <section class="hero">
+    <p class="hero-kicker">Enciclopedia no oficial</p>
+    <h1>Keiji, el gallo que pelea contra demonios</h1>
+    <p class="hero-texto">
+      Bienvenido a la enciclopedia de <strong>Rooster Fighter</strong>
+      (ニワトリ・ファイター, <em>Niwatori Fighter</em>), el manga seinen de
+      Shu Sakuratani donde un gallo llamado Keiji recorre Japón enfrentando
+      a los demonios kijū para vengar a su hermana.
+    </p>
+    <nav class="hero-acciones" aria-label="Secciones destacadas">
+      <a class="boton" href={`${base}/keiji/`}>Conoce a Keiji</a>
+    </nav>
+  </section>
+
+  <section class="secciones-grid" aria-label="Contenido del sitio">
+    <a class="card" href={`${base}/keiji/`}>
+      <h2>Keiji</h2>
+      <p>Biografía, habilidades e historia del protagonista.</p>
+    </a>
+    <a class="card" href={`${base}/personajes/`}>
+      <h2>Personajes</h2>
+      <p>Aliados, secundarios y los demonios kijū.</p>
+    </a>
+    <a class="card" href={`${base}/capitulos/`}>
+      <h2>Capítulos</h2>
+      <p>Listado de capítulos con sinopsis breves.</p>
+    </a>
+    <a class="card" href={`${base}/galeria/`}>
+      <h2>Galería</h2>
+      <p>Covers y arte oficial del manga.</p>
+    </a>
+    <a class="card" href={`${base}/videos/`}>
+      <h2>Videos</h2>
+      <p>Trailers y clips oficiales.</p>
+    </a>
+  </section>
+</Base>

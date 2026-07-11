@@ -1,0 +1,65 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  titulo: string;
+  descripcion?: string;
+}
+
+const { titulo, descripcion = 'Enciclopedia de Keiji, el gallo protagonista del manga Rooster Fighter (Niwatori Fighter) de Shu Sakuratani.' } = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const enlaces = [
+  { href: `${base}/`, texto: 'Inicio' },
+  { href: `${base}/keiji/`, texto: 'Keiji' },
+  { href: `${base}/personajes/`, texto: 'Personajes' },
+  { href: `${base}/capitulos/`, texto: 'Capítulos' },
+  { href: `${base}/galeria/`, texto: 'Galería' },
+  { href: `${base}/videos/`, texto: 'Videos' },
+];
+const rutaActual = Astro.url.pathname;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={descripcion} />
+    <title>{titulo} · Enciclopedia Rooster Fighter</title>
+  </head>
+  <body>
+    <header class="cabecera">
+      <nav class="contenedor cabecera-nav" aria-label="Navegación principal">
+        <a class="logo" href={`${base}/`}>🐓 Keiji</a>
+        <ul class="nav-enlaces">
+          {enlaces.map((enlace) => (
+            <li>
+              <a
+                href={enlace.href}
+                aria-current={rutaActual === enlace.href ? 'page' : undefined}
+              >
+                {enlace.texto}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+
+    <main class="contenedor">
+      <slot />
+    </main>
+
+    <footer class="pie">
+      <div class="contenedor">
+        <p>
+          Enciclopedia no oficial de <em>Rooster Fighter</em> (ニワトリ・ファイター) de Shu Sakuratani.
+          Datos e imágenes de <a href="https://anilist.co" rel="noopener">AniList</a>,
+          <a href="https://myanimelist.net" rel="noopener">MyAnimeList</a> y
+          <a href="https://roosterfighter.fandom.com" rel="noopener">Fandom</a>.
+          Todo el material con copyright pertenece a sus autores y editoriales.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

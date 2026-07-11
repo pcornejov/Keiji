@@ -1,0 +1,459 @@
+/* ==========================================================================
+   GLOBAL — Estilos base de la enciclopedia de Keiji (Rooster Fighter)
+   ==========================================================================
+   Mobile-first. Solo CSS plano: custom properties, flexbox y grid.
+   Breakpoints (ver tokens.css): 640px (tableta) y 960px (escritorio).
+   ========================================================================== */
+
+@import "./tokens.css";
+
+/* --------------------------------------------------------------------------
+   RESET LIGERO
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  /* Evita saltos de layout al aparecer la barra de scroll */
+  scrollbar-gutter: stable;
+}
+
+body {
+  min-height: 100dvh;
+  line-height: var(--interlineado-texto);
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* Respeta a quien pide menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   BASE — body, headings, texto
+   -------------------------------------------------------------------------- */
+body {
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-base);
+  color: var(--texto);
+  background-color: var(--fondo);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--fuente-display);
+  font-weight: var(--peso-display);
+  line-height: var(--interlineado-titulo);
+  /* Tracking apretado + mayúscula opcional dan el tono "portada seinen"
+     sin cargar fuentes externas */
+  letter-spacing: -0.02em;
+  color: var(--texto);
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--texto-2xl); }
+h2 { font-size: var(--texto-xl); }
+h3 { font-size: var(--texto-lg); }
+h4 { font-size: var(--texto-md); }
+
+p + p {
+  margin-top: var(--espacio-4);
+}
+
+small {
+  font-size: var(--texto-sm);
+  color: var(--texto-suave);
+}
+
+::selection {
+  background-color: var(--acento);
+  color: var(--texto-invertido);
+}
+
+/* --------------------------------------------------------------------------
+   ENLACES Y FOCO
+   -------------------------------------------------------------------------- */
+a {
+  color: var(--enlace);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color var(--transicion);
+}
+
+a:hover {
+  color: var(--enlace-hover);
+}
+
+/* Foco visible y consistente en todo elemento interactivo (AA) */
+:focus-visible {
+  outline: 3px solid var(--anillo-foco);
+  outline-offset: 2px;
+  border-radius: var(--radio-sm);
+}
+
+/* --------------------------------------------------------------------------
+   UTILIDADES
+   -------------------------------------------------------------------------- */
+
+/* Contenedor central: padding lateral en móvil, max-width en escritorio.
+   Uso: <div class="contenedor">…</div> dentro de cada sección de página. */
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho-contenedor);
+  margin-inline: auto;
+  padding-inline: var(--espacio-4);
+}
+
+@media (min-width: 640px) {
+  .contenedor {
+    padding-inline: var(--espacio-6);
+  }
+}
+
+/* Texto solo para lectores de pantalla (etiquetas accesibles) */
+.solo-lectura {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   HEADER DE NAVEGACIÓN STICKY
+   --------------------------------------------------------------------------
+   Estructura HTML esperada:
+
+   <header class="cabecera">
+     <div class="contenedor cabecera__interior">
+       <a class="cabecera__logo" href="/">Keiji</a>
+       <nav class="cabecera__nav" aria-label="Navegación principal">
+         <ul class="cabecera__lista">
+           <li><a href="/" aria-current="page">Inicio</a></li>
+           <li><a href="/keiji/">Keiji</a></li>
+           <li><a href="/personajes/">Personajes</a></li>
+           <li><a href="/capitulos/">Capítulos</a></li>
+           <li><a href="/galeria/">Galería</a></li>
+           <li><a href="/videos/">Videos</a></li>
+         </ul>
+       </nav>
+     </div>
+   </header>
+
+   Comportamiento responsive (sin JS):
+   - Móvil (< 640px): logo arriba y, debajo, los enlaces en UNA fila con
+     scroll horizontal (overflow-x) — nada de menú hamburguesa.
+   - Tableta+ (>= 640px): logo y enlaces en una sola fila; si no caben,
+     el scroll horizontal sigue funcionando como red de seguridad.
+   -------------------------------------------------------------------------- */
+.cabecera {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--superficie);
+  /* Línea de tinta gruesa bajo el header: guiño a la viñeta de manga */
+  border-bottom: 3px solid var(--color-tinta);
+}
+
+.cabecera__interior {
+  display: flex;
+  flex-direction: column; /* móvil: logo arriba, nav debajo */
+  gap: 0;
+}
+
+.cabecera__logo {
+  padding-block: var(--espacio-3);
+  font-family: var(--fuente-display);
+  font-size: var(--texto-lg);
+  font-weight: var(--peso-display);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--texto);
+  /* El punto rojo tras el logo se logra con un ::after, sin imágenes */
+}
+
+.cabecera__logo::after {
+  content: "";
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin-left: 0.3em;
+  border-radius: var(--radio-redondo);
+  background-color: var(--acento);
+}
+
+.cabecera__logo:hover {
+  color: var(--acento-hover);
+}
+
+.cabecera__nav {
+  /* Franja de enlaces con scroll horizontal en móvil, sin JS */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox: oculta la barra, el scroll sigue activo */
+}
+
+.cabecera__nav::-webkit-scrollbar {
+  display: none; /* WebKit: idem */
+}
+
+.cabecera__lista {
+  display: flex;
+  gap: var(--espacio-2);
+  list-style: none;
+  padding: 0;
+  padding-bottom: var(--espacio-2);
+  white-space: nowrap; /* los enlaces nunca se parten: se desplazan */
+}
+
+.cabecera__lista a {
+  display: inline-block;
+  padding: var(--espacio-1) var(--espacio-3);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medio);
+  text-decoration: none;
+  color: var(--texto-secundario);
+  border-radius: var(--radio-redondo);
+  transition: color var(--transicion), background-color var(--transicion);
+}
+
+.cabecera__lista a:hover {
+  color: var(--texto);
+  background-color: var(--superficie-hundida);
+}
+
+/* Página activa: píldora roja con texto claro (contraste AA) */
+.cabecera__lista a[aria-current="page"] {
+  color: var(--texto-invertido);
+  background-color: var(--acento);
+}
+
+@media (min-width: 640px) {
+  /* Tableta+: todo en una fila, logo a la izquierda y nav a la derecha */
+  .cabecera__interior {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--espacio-5);
+    min-height: var(--alto-header);
+  }
+
+  .cabecera__logo {
+    padding-block: 0;
+    flex-shrink: 0;
+  }
+
+  .cabecera__lista {
+    padding-bottom: 0;
+    gap: var(--espacio-1);
+  }
+}
+
+@media (min-width: 960px) {
+  .cabecera__lista {
+    gap: var(--espacio-2);
+  }
+
+  .cabecera__lista a {
+    font-size: var(--texto-base);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER SIMPLE
+   --------------------------------------------------------------------------
+   Estructura HTML esperada:
+
+   <footer class="pie">
+     <div class="contenedor pie__interior">
+       <p class="pie__marca">Keiji — Enciclopedia de Rooster Fighter</p>
+       <p class="pie__nota">
+         Sitio de fans sin ánimo de lucro. Rooster Fighter © Shu Sakuratani.
+       </p>
+     </div>
+   </footer>
+   -------------------------------------------------------------------------- */
+.pie {
+  margin-top: var(--espacio-7);
+  background-color: var(--superficie-oscura);
+  color: var(--texto-invertido);
+  /* Línea roja superior: cierre de página con el acento de cresta */
+  border-top: 4px solid var(--acento);
+}
+
+.pie__interior {
+  padding-block: var(--espacio-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+}
+
+.pie__marca {
+  font-family: var(--fuente-display);
+  font-weight: var(--peso-negrita);
+  letter-spacing: 0.02em;
+}
+
+.pie__nota {
+  font-size: var(--texto-sm);
+  /* Crema atenuada sobre noche: contraste ≈ 9:1, muy por sobre AA */
+  color: var(--color-papel-sombra);
+}
+
+.pie a {
+  color: var(--texto-invertido);
+}
+
+.pie a:hover {
+  color: var(--acento-suave);
+}
+
+@media (min-width: 640px) {
+  .pie__interior {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   CARD BASE REUTILIZABLE
+   --------------------------------------------------------------------------
+   Bloque genérico para personajes, capítulos, galería, etc.
+   Estructura HTML esperada (todas las partes son opcionales):
+
+   <article class="card">
+     <a class="card__enlace" href="/personajes/keiji/">
+       <img class="card__imagen" src="…" alt="Keiji en pose de combate" />
+       <div class="card__cuerpo">
+         <p class="card__meta">Personaje principal</p>
+         <h3 class="card__titulo">Keiji</h3>
+         <p class="card__texto">El gallo que juró exterminar a los demonios.</p>
+       </div>
+     </a>
+   </article>
+
+   Si la card no es un enlace, se omite .card__enlace y .card__cuerpo
+   cuelga directo de .card.
+   -------------------------------------------------------------------------- */
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--superficie);
+  border: 2px solid var(--color-tinta); /* borde de viñeta */
+  border-radius: var(--radio-md);
+  box-shadow: var(--sombra-sm);
+  overflow: hidden; /* recorta la imagen a las esquinas redondeadas */
+  transition: box-shadow var(--transicion), transform var(--transicion);
+}
+
+/* Hover con "salto" de viñeta solo cuando la card es interactiva */
+.card:has(.card__enlace):hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--sombra-vineta);
+}
+
+.card__enlace {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* El foco lo dibuja la card completa, no el enlace interior */
+.card__enlace:focus-visible {
+  outline: none;
+}
+
+.card:has(.card__enlace:focus-visible) {
+  outline: 3px solid var(--anillo-foco);
+  outline-offset: 2px;
+}
+
+.card__imagen {
+  width: 100%;
+  aspect-ratio: 3 / 2; /* recorte uniforme en grids mixtos */
+  object-fit: cover;
+  border-bottom: 2px solid var(--color-tinta);
+  background-color: var(--superficie-hundida); /* placeholder mientras carga */
+}
+
+.card__cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-2);
+  padding: var(--espacio-4);
+  flex: 1;
+}
+
+@media (min-width: 640px) {
+  .card__cuerpo {
+    padding: var(--espacio-5);
+  }
+}
+
+/* Etiqueta pequeña sobre el título (tipo, número de capítulo, etc.) */
+.card__meta {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-negrita);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texto-acento);
+}
+
+.card__titulo {
+  font-size: var(--texto-lg);
+}
+
+.card__texto {
+  font-size: var(--texto-sm);
+  color: var(--texto-secundario);
+}

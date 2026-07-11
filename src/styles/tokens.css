@@ -1,0 +1,148 @@
+/* ==========================================================================
+   TOKENS — Sistema de diseño base de la enciclopedia de Keiji (Rooster Fighter)
+   ==========================================================================
+   Dirección de arte: seinen de acción con humor. Rojos/naranjos de cresta de
+   gallo como acento, fondos crema/papel de manga, tintas oscuras para texto.
+   Alto contraste, mobile-first, sin frameworks.
+
+   RECOMENDACIÓN FUTURA (tipografía display):
+   Si más adelante se quiere una fuente de títulos con más carácter,
+   se recomienda cargar desde Google Fonts UNA sola familia display:
+   "Bebas Neue" (condensada, contundente, muy de portada de manga de acción)
+   o, como alternativa con más peso editorial, "Archivo Black".
+   Se cargaría vía <link> en el <head> y bastaría con redefinir
+   --fuente-display más abajo. Por ahora NO se carga nada externo:
+   el sitio debe cargar rápido y el system stack cumple.
+
+   BREAKPOINTS (documentados aquí; las media queries no aceptan variables CSS,
+   así que estos valores se escriben literales en global.css y componentes):
+     - Móvil (base):        < 640px  → una columna, nav con scroll horizontal
+     - Tableta:            >= 640px  → @media (min-width: 640px)
+     - Escritorio:         >= 960px  → @media (min-width: 960px)
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------
+     PALETA — Acento: cresta de gallo (rojos / naranjos)
+     ------------------------------------------------------------------ */
+  --color-cresta:         #c8321e; /* Rojo cresta: acento principal. AA sobre crema para texto grande y elementos gráficos */
+  --color-cresta-oscuro:  #9c2312; /* Rojo sangre/tinta: hover, texto acentuado sobre fondos claros (AA en texto normal) */
+  --color-cresta-claro:   #e8532e; /* Naranjo cresta encendido: detalles gráficos, bordes activos (no usar para texto pequeño sobre crema) */
+  --color-ambar:          #e89b3c; /* Ámbar plumaje: acento secundario decorativo (badges, subrayados gruesos) */
+
+  /* ------------------------------------------------------------------
+     PALETA — Fondos: papel de manga (cremas)
+     ------------------------------------------------------------------ */
+  --color-papel:          #f7f1e3; /* Fondo principal: crema papel envejecido */
+  --color-papel-claro:    #fdfaf2; /* Superficies elevadas: cards, header */
+  --color-papel-sombra:   #ece2cc; /* Fondo hundido: franjas alternas, código, footer interior */
+
+  /* ------------------------------------------------------------------
+     PALETA — Tintas: oscuros seinen (negros tinta, grises carbón)
+     ------------------------------------------------------------------ */
+  --color-tinta:          #1a1714; /* Negro tinta: texto principal. Contraste ~15:1 sobre papel */
+  --color-carbon:         #4a423a; /* Gris carbón: texto secundario. Contraste ~7.5:1 sobre papel (AA/AAA) */
+  --color-humo:           #6e6459; /* Gris humo: metadatos, captions. Contraste ~4.7:1 sobre papel (AA texto normal) */
+  --color-noche:          #221e1a; /* Superficie oscura: footer, franjas invertidas */
+
+  /* ------------------------------------------------------------------
+     COLORES SEMÁNTICOS — usar SIEMPRE estos en componentes,
+     nunca los de paleta directamente (facilita retematizar)
+     ------------------------------------------------------------------ */
+  /* Texto */
+  --texto:                var(--color-tinta);       /* texto de párrafo */
+  --texto-secundario:     var(--color-carbon);      /* subtítulos, descripciones */
+  --texto-suave:          var(--color-humo);        /* metadatos, fechas, captions */
+  --texto-invertido:      var(--color-papel-claro); /* texto sobre fondos oscuros */
+  --texto-acento:         var(--color-cresta-oscuro); /* palabras destacadas, cifras */
+
+  /* Superficies */
+  --fondo:                var(--color-papel);        /* fondo de página */
+  --superficie:           var(--color-papel-claro);  /* cards, header, paneles */
+  --superficie-hundida:   var(--color-papel-sombra); /* franjas, tablas alternas */
+  --superficie-oscura:    var(--color-noche);        /* footer, secciones invertidas */
+
+  /* Acentos interactivos */
+  --acento:               var(--color-cresta);        /* botones, marcas activas */
+  --acento-hover:         var(--color-cresta-oscuro); /* hover/active */
+  --acento-suave:         var(--color-ambar);         /* decorativo, no interactivo */
+
+  /* Enlaces */
+  --enlace:               var(--color-cresta-oscuro); /* AA sobre crema (≈6:1) */
+  --enlace-hover:         var(--color-tinta);
+
+  /* Bordes y foco */
+  --borde:                #d9cdb4; /* borde sutil sobre papel */
+  --borde-fuerte:         var(--color-carbon); /* borde marcado, estilo viñeta */
+  --anillo-foco:          var(--color-cresta); /* outline de :focus-visible */
+
+  /* ------------------------------------------------------------------
+     TIPOGRAFÍA — system font stack (rápido, sin peticiones externas)
+     ------------------------------------------------------------------ */
+  --fuente-texto: system-ui, -apple-system, "Segoe UI", Roboto,
+                  "Helvetica Neue", Arial, sans-serif;
+  /* Display: mismo stack por ahora, pero condensado con peso 800 y
+     tracking apretado en global.css para el tono "portada de manga".
+     Ver recomendación de Google Fonts al inicio del archivo. */
+  --fuente-display: var(--fuente-texto);
+  --fuente-mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo,
+                 Consolas, monospace;
+
+  /* Escala tipográfica (mobile-first; razón ~1.25, base 16px).
+     Los tamaños grandes usan clamp() para crecer con el viewport. */
+  --texto-xs:   0.75rem;                            /* 12px — badges, captions */
+  --texto-sm:   0.875rem;                           /* 14px — metadatos, nav secundaria */
+  --texto-base: 1rem;                               /* 16px — párrafo */
+  --texto-md:   1.125rem;                           /* 18px — lead, párrafo destacado */
+  --texto-lg:   clamp(1.25rem, 1.1rem + 0.8vw, 1.5rem);   /* 20→24px — h3 */
+  --texto-xl:   clamp(1.5rem, 1.25rem + 1.2vw, 1.9rem);   /* 24→30px — h2 */
+  --texto-2xl:  clamp(1.9rem, 1.5rem + 2vw, 2.6rem);      /* 30→42px — h1 */
+  --texto-hero: clamp(2.4rem, 1.8rem + 3.5vw, 3.6rem);    /* 38→58px — hero / portada */
+
+  /* Pesos y alturas de línea */
+  --peso-normal:    400;
+  --peso-medio:     600;
+  --peso-negrita:   700;
+  --peso-display:   800;  /* titulares: contundente, estilo seinen */
+  --interlineado-titulo: 1.15;
+  --interlineado-texto:  1.6;
+
+  /* ------------------------------------------------------------------
+     ESPACIADO — escala en múltiplos de 4px
+     ------------------------------------------------------------------ */
+  --espacio-1:  0.25rem;  /*  4px — separaciones mínimas */
+  --espacio-2:  0.5rem;   /*  8px — interior de badges, gaps chicos */
+  --espacio-3:  0.75rem;  /* 12px — padding compacto */
+  --espacio-4:  1rem;     /* 16px — padding estándar, gap de grids en móvil */
+  --espacio-5:  1.5rem;   /* 24px — interior de cards, separación de párrafos */
+  --espacio-6:  2rem;     /* 32px — separación entre bloques */
+  --espacio-7:  3rem;     /* 48px — separación entre secciones (móvil) */
+  --espacio-8:  4.5rem;   /* 72px — separación entre secciones (escritorio) */
+
+  /* ------------------------------------------------------------------
+     RADIOS — esquinas contenidas: el estilo viñeta pide ángulos firmes
+     ------------------------------------------------------------------ */
+  --radio-sm:      4px;   /* badges, chips */
+  --radio-md:      8px;   /* cards, botones */
+  --radio-lg:      14px;  /* imágenes destacadas, paneles grandes */
+  --radio-redondo: 999px; /* píldoras, avatares */
+
+  /* ------------------------------------------------------------------
+     SOMBRAS — tinta suave, nunca gris azulado
+     ------------------------------------------------------------------ */
+  --sombra-sm: 0 1px 2px rgba(26, 23, 20, 0.10);
+  --sombra-md: 0 2px 8px rgba(26, 23, 20, 0.12),
+               0 1px 2px rgba(26, 23, 20, 0.08);
+  --sombra-lg: 0 8px 24px rgba(26, 23, 20, 0.16),
+               0 2px 6px rgba(26, 23, 20, 0.10);
+  /* Sombra "viñeta": desplazamiento duro sin desenfoque, estilo página
+     de manga. Para cards destacadas y hover. */
+  --sombra-vineta: 4px 4px 0 rgba(26, 23, 20, 0.9);
+
+  /* ------------------------------------------------------------------
+     MISCELÁNEA
+     ------------------------------------------------------------------ */
+  --ancho-contenedor: 72rem;   /* 1152px — max-width del contenido */
+  --transicion: 160ms ease;    /* transición estándar de hover/focus */
+  --alto-header: 3.5rem;       /* 56px — altura del header sticky */
+}

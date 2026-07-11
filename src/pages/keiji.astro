@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro';
+import keiji from '../data/keiji.json';
+import obra from '../data/obra.json';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Parte un texto largo en párrafos si viene separado por líneas en blanco.
+const enParrafos = (texto: string | null | undefined): string[] =>
+  texto ? texto.split(/\n\n+/).map((p) => p.trim()).filter(Boolean) : [];
+
+const parrafosBiografia = enParrafos(keiji.biografia);
+const parrafosHistoria = enParrafos(keiji.historia);
+const habilidades = keiji.habilidades ?? [];
+
+// Datos rápidos: solo filas con valor disponible en los JSON.
+const filas = [
+  { etiqueta: 'Nombre japonés', valor: keiji.nombre_japones ? `${keiji.nombre_japones} (${keiji.nombre})` : null },
+  { etiqueta: 'Especie', valor: 'Gallo leghorn' },
+  { etiqueta: 'Familia', valor: 'Linaje Goshikidori' },
+  { etiqueta: 'Obra', valor: obra.titulo && obra.titulo_japones ? `${obra.titulo} (${obra.titulo_japones})` : obra.titulo },
+  { etiqueta: 'Autor', valor: obra.autor },
+  { etiqueta: 'Revista', valor: obra.revista },
+].filter((fila) => Boolean(fila.valor));
+---
+
+<Base
+  titulo={keiji.nombre ?? 'Keiji'}
+  descripcion="Ficha de Keiji: biografía, habilidades e historia del gallo protagonista de Rooster Fighter."
+>
+  <section class="hero-ficha">
+    {keiji.imagen_url && (
+      <img
+        class="hero-ficha__imagen"
+        src={keiji.imagen_url}
+        alt={`Retrato de ${keiji.nombre ?? 'Keiji'}, el gallo protagonista de Rooster Fighter`}
+        width="600"
+        height="800"
+        loading="eager"
+      />
+    )}
+    <div class="hero-ficha__texto">
+      {keiji.nombre_japones && <p class="hero-kicker">{keiji.nombre_japones}</p>}
+      <h1>{keiji.nombre ?? 'Keiji'}</h1>
+      {keiji.descripcion && (
+        <p class="hero-ficha__descripcion">{keiji.descripcion}</p>
+      )}
+    </div>
+  </section>
+
+  {filas.length > 0 && (
+    <dl class="ficha-datos">
+      {filas.map((fila) => (
+        <div class="ficha-datos__fila">
+          <dt>{fila.etiqueta}</dt>
+          <dd>{fila.valor}</dd>
+        </div>
+      ))}
+      {keiji.url_fuente && (
+        <div class="ficha-datos__fila">
+          <dt>Fuente</dt>
+          <dd>
+            <a href={keiji.url_fuente} rel="noopener">Rooster Fighter Wiki (Fandom)</a>
+            {keiji.fuente && <small> — datos de {keiji.fuente}</small>}
+          </dd>
+        </div>
+      )}
+    </dl>
+  )}
+
+  {habilidades.length > 0 && (
+    <section aria-labelledby="titulo-habilidades">
+      <h2 class="seccion-titulo" id="titulo-habilidades">Habilidades</h2>
+      <div class="habilidades-grid">
+        {habilidades.map((habilidad) => (
+          <article class="card">
+            <div class="card__cuerpo">
+              <h3 class="card__titulo">{habilidad.nombre}</h3>
+              <p class="card__texto">{habilidad.descripcion}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {parrafosBiografia.length > 0 && (
+    <section aria-labelledby="titulo-biografia">
+      <h2 class="seccion-titulo" id="titulo-biografia">Biografía</h2>
+      <div class="prosa">
+        {parrafosBiografia.map((parrafo) => <p>{parrafo}</p>)}
+      </div>
+    </section>
+  )}
+
+  {parrafosHistoria.length > 0 && (
+    <section aria-labelledby="titulo-historia">
+      <h2 class="seccion-titulo" id="titulo-historia">Historia</h2>
+      <div class="prosa">
+        <p><small>Aviso: esta sección contiene spoilers de la trama del manga, incluida la identidad del Demonio Blanco.</small></p>
+        {parrafosHistoria.map((parrafo) => <p>{parrafo}</p>)}
+      </div>
+    </section>
+  )}
+</Base>

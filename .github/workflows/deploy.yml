@@ -27,6 +27,8 @@ jobs:
           enablement: true
       - name: Build con Astro
         uses: withastro/action@v3
+        with:
+          node-version: 22
 
   deploy:
     needs: build

@@ -1,0 +1,132 @@
+[
+  {
+    "id": "keiji",
+    "nombre": "Keiji",
+    "nombre_japones": "ケイジ",
+    "tipo": "aliado",
+    "imagen_url": "https://s4.anilist.co/file/anilistcdn/character/large/b212585-9H3fZVoe95h2.png",
+    "descripcion": "Protagonista de la serie. Gallo leghorn errante y autoproclamado «ave migratoria» que juró derrotar al demonio que mató a su hermana Sara. Recorre Japón sin quedarse nunca más de lo necesario, sigue un estricto código de respeto y gratitud y, aunque desprecia a los niños y jóvenes irrespetuosos, guarda debilidad por algunos, como Piyoko. Entre sus habilidades destacan su poderoso quiquiriquí, capaz de inducir resonancia y hacer estallar demonios, y su gran puntería lanzando objetos con el pico.",
+    "fuente": "anilist + wikipedia + fandom",
+    "url_fuente": "https://rooster-fighter.fandom.com/wiki/Keiji"
+  },
+  {
+    "id": "piyoko",
+    "nombre": "Piyoko",
+    "nombre_japones": "ピヨコ",
+    "tipo": "aliado",
+    "imagen_url": "https://s4.anilist.co/file/anilistcdn/character/large/b348018-EhQcf7Q8e986.png",
+    "descripcion": "Polluela criada por un yakuza que iba a venderla junto a otros pollitos, pero que acabó convertida en su querida mascota. Tras ver a su dueño transformarse en demonio mutante y presenciar cómo Keiji lo derrotaba y lo salvaba, decidió seguir al gallo en su viaje; él la aceptó a regañadientes después de que ella lo cuidara hasta recuperarse. Lleva tatuada en la espalda la palabra «Deber» (仁義, jingi), imitando el tatuaje de su antiguo dueño. Está muy apegada a Keiji, cree que se casará con él cuando crezca y mantiene una feroz rivalidad amorosa con Elizabeth. Combate armada con un clavo y, por razones desconocidas, no envejece: sigue siendo una polluela tras meses de viaje.",
+    "fuente": "anilist + wikipedia + fandom",
+    "url_fuente": "https://rooster-fighter.fandom.com/wiki/Piyoko"
+  },
+  {
+    "id": "elizabeth",
+    "nombre": "Elizabeth",
+    "nombre_japones": "エリザベス",
+    "tipo": "aliado",
+    "imagen_url": "https://s4.anilist.co/file/anilistcdn/character/large/b348019-vZ4p1kLBQTtb.png",
+    "descripcion": "Gallina negra adoptada al poco de nacer por una familia adinerada. Vivía una vida lujosa pero insatisfactoria cuando un demonio arrasó su ciudad y estuvo a punto de matarla junto a su familia; Keiji los rescató y ella se enamoró de él al instante, solo para ser abandonada tras su breve romance. Primero se entrenó para vengarse del gallo, pero tras ver a más demonios matar a sus seres queridos dedicó seis meses a prepararse para combatirlos, y al reencontrarse con Keiji decidió unirse a su lucha contra el Demonio Blanco. Pelea con un bastón eléctrico, domina la tecnología (usa un teléfono móvil y una asistente de IA llamada Sophia) y, a través de su padre adoptivo, tiene acceso a un laboratorio donde diseñar herramientas.",
+    "fuente": "anilist + wikipedia + fandom",
+    "url_fuente": "https://rooster-fighter.fandom.com/wiki/Elizabeth"
+  },
+  {
+    "id": "keisuke",
+    "nombre": "Keisuke",
+    "nombre_japones": "ケイスケ",
+    "tipo": "aliado",
+    "imagen_url": "https://s4.anilist.co/file/anilistcdn/character/large/b368755-UQ4cxbkNdnBK.png",
+    "descripcion": "Medio hermano menor de Keiji, con cresta emplumada y una fuerza equiparable a la suya. Es un híbrido adolescente de gallina sedosa (silkie) y leghorn, de plumaje blanco y esponjoso, pico y patas azules con polidactilia y un peinado afro que le cubre los ojos marrones hasta que se pone serio. Criado por Keizan, el padre de ambos, se une a la búsqueda de Keiji para rescatarlo tras ser capturado por los diablos, y le revela que descienden de la familia Goshikidori, dotada de artes marciales para derrotar demonios.",
+    "fuente": "anilist + wikipedia + fandom",
+    "url_fuente": "https://rooster-fighter.fandom.com/wiki/Keisuke"
+  },
+  {
+    "id": "morio",
+    "nombre": "Morio",
+    "nombre_japones": "モリオ",
+    "tipo": "demonio",
+    "imagen_url": "https://s4.anilist.co/file/anilistcdn/character/large/b368754-Ug3yDowSwmkM.png",
+    "descripcion": "Demonio amistoso surgido de un hombre de mediana edad al que diagnosticaron un cáncer de estómago terminal, y que fue abandonado cuando su huésped humano descubrió que el diagnóstico era erróneo. Tras ser atacado constantemente por los lugareños, encogió hasta tamaño humano y vivió como un ermitaño hasta conocer a Keiji y hacerse su amigo. Llegó a taponar con su forma gigante las grietas de una presa a punto de colapsar para salvar un pueblo.",
+    "fuente": "anilist + wikipedia + fandom",
+    "url_fuente": "https://rooster-fighter.fandom.com/wiki/Morio"
+  },
+  {
+    "id": "gakuma",
+    "nombre": "Gakuma (el Demonio Blanco)",
+    "nombre_japones": "嶽磨 / 白鬼獣 (Hakkijū)",
+    "tipo": "demonio",
+    "imagen_url": null,
+    "descripcion": "Demonio gigante de piel blanca y cuatro cuernos, responsable de matar a Sara, la hermana de Keiji. Conocido como «el Demonio Blanco», porta un ave ígnea semejante a un fénix con la que quema lo que desea y tiene una marca circular en el cuello que Keiji usa para identificarlo. Más adelante se revela que es el líder de todos los demonios y que posee la forma humana de un joven llamado Gakuma.",
+    "fuente": "wikipedia + fandom",
+    "url_fuente": "https://en.wikipedia.org/wiki/Rooster_Fighter"
+  },
+  {
+    "id": "kugone",
+    "nombre": "Kugone",
+    "nombre_japones": "クゴネ",
+    "tipo": "demonio",
+    "imagen_url": null,
+    "descripcion": "Mano derecha de Gakuma. Por orden suya crea demonios por todo Japón. Lavó el cerebro al diablo Hikari tras su transformación, convenciéndolo de que era su verdadera madre mientras lo convertía en diablo.",
+    "fuente": "wikipedia",
+    "url_fuente": "https://en.wikipedia.org/wiki/Rooster_Fighter"
+  },
+  {
+    "id": "yuji",
+    "nombre": "Yuji",
+    "nombre_japones": "裕二",
+    "tipo": "demonio",
+    "imagen_url": null,
+    "descripcion": "Diablo al servicio de Kugone que custodia el almacén de Akamori. En su verdadera forma dispara andanadas de misiles desde un brazo armado. Muere a manos de Keisuke después de que Keiji hiciera estallar su brazo introduciendo metal deformado en el cañón.",
+    "fuente": "wikipedia",
+    "url_fuente": "https://en.wikipedia.org/wiki/Rooster_Fighter"
+  },
+  {
+    "id": "hikari",
+    "nombre": "Hikari",
+    "nombre_japones": "ヒカリ",
+    "tipo": "demonio",
+    "imagen_url": null,
+    "descripcion": "Diablo que combate con múltiples tentáculos afilados y es capaz de regenerarse. Tras ser derrotado por el poder despertado de Keiji, recupera su forma humana y revela que Kugone le lavó el cerebro tras convertirse en demonio, haciéndole creer que era su verdadera madre. Después de la batalla acompaña al grupo.",
+    "fuente": "wikipedia",
+    "url_fuente": "https://en.wikipedia.org/wiki/Rooster_Fighter"
+  },
+  {
+    "id": "sara",
+    "nombre": "Sara",
+    "nombre_japones": "サラ",
+    "tipo": "secundario",
+    "imagen_url": null,
+    "descripcion": "Hermana menor de Keiji. Su muerte a manos del Demonio Blanco es lo que impulsa a Keiji a buscar venganza; sin embargo, el propio Keiji advierte que el ave ígnea que utiliza el Demonio Blanco se parece a ella.",
+    "fuente": "wikipedia + fandom",
+    "url_fuente": "https://en.wikipedia.org/wiki/Rooster_Fighter"
+  },
+  {
+    "id": "keizan",
+    "nombre": "Keizan",
+    "nombre_japones": "ケイザン",
+    "tipo": "secundario",
+    "imagen_url": null,
+    "descripcion": "Padre de Keiji, Keisuke y Sara. Crio a Keisuke, pero abandonó a Keiji y a su madre biológica. Fue capturado por los diablos y retenido como rehén en la ciudad de Akamori, hasta que Elizabeth logró rescatarlo.",
+    "fuente": "wikipedia + fandom",
+    "url_fuente": "https://en.wikipedia.org/wiki/Rooster_Fighter"
+  },
+  {
+    "id": "one-eyed-silver",
+    "nombre": "Silver el Tuerto (One-Eyed Silver)",
+    "nombre_japones": "片目の銀 (Katame no Gin)",
+    "tipo": "secundario",
+    "imagen_url": null,
+    "descripcion": "Tortuga marina tuerta con un rencor personal contra las aves, tras ver cómo una bandada de gaviotas devoraba a sus hermanos recién eclosionados; por ello se muestra hostil con Keiji al principio. Sin embargo, lo ayuda a derrotar a un demonio en el mar al comprender que Keiji no es como las gaviotas que desprecia. Deja marchar a Keiji para que vengue a su hermana, pero le hace prometer que tendrán un combate en condiciones a su regreso. Su ataque característico es el Turtle Smash, con el que arranca pedazos de roca y los dispara.",
+    "fuente": "wikipedia + fandom",
+    "url_fuente": "https://rooster-fighter.fandom.com/wiki/One-Eyed_Silver"
+  },
+  {
+    "id": "zena",
+    "nombre": "Zena",
+    "nombre_japones": "ゼナ",
+    "tipo": "secundario",
+    "imagen_url": null,
+    "descripcion": "Tucán anciano arrebatado de su hogar en Brasil que supervisaba la exhibición de Aves del Sur de un zoológico. Acogió a Keiji en la exhibición tras encontrarlo inconsciente bajo la lluvia. Era un miembro muy querido de su comunidad y protegió a su familia de aves durante el ataque de un demonio antes de sucumbir a sus heridas. Keiji tomó una de sus plumas con la esperanza de devolvérsela algún día a las hermanas de Zena.",
+    "fuente": "wikipedia + fandom",
+    "url_fuente": "https://rooster-fighter.fandom.com/wiki/Zena"
+  }
+]

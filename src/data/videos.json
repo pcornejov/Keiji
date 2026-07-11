@@ -1,0 +1,37 @@
+[
+  {
+    "youtube_id": "5hRrvJ08ZSs",
+    "titulo": "Official Anime Trailer | Rooster Fighter | VIZ",
+    "descripcion": "Tráiler oficial en inglés del anime Rooster Fighter, publicado por VIZ Media (editorial norteamericana del manga y coproductora del anime). Es el tráiler enlazado por AniList para la serie.",
+    "canal": "vizmedia (https://www.youtube.com/@vizmedia)",
+    "fuente": "anilist + youtube (verificado vía oEmbed)"
+  },
+  {
+    "youtube_id": "SszaEjs037c",
+    "titulo": "『ニワトリ・ファイター』アニメ公式PVフルバージョン",
+    "descripcion": "PV oficial en versión completa del anime, publicado por el canal oficial de HERO'S Web, la editorial japonesa (Hero's Inc.) que serializa el manga.",
+    "canal": "HERO'S Web公式チャンネル (https://www.youtube.com/@heros1101)",
+    "fuente": "youtube (verificado vía oEmbed)"
+  },
+  {
+    "youtube_id": "Fj8bDAJzT7A",
+    "titulo": "『ニワトリ・ファイター』アニメ公式PV第2弾｜2026年 春アニメ公開!!",
+    "descripcion": "Segundo PV oficial del anime, que anuncia su estreno en la temporada de primavera de 2026. Publicado por el canal oficial de HERO'S Web.",
+    "canal": "HERO'S Web公式チャンネル (https://www.youtube.com/@heros1101)",
+    "fuente": "youtube (verificado vía oEmbed)"
+  },
+  {
+    "youtube_id": "EG5pLtPQztE",
+    "titulo": "『ニワトリ・ファイター』アニメ公式PV第3弾｜2026年4月5日放送開始！",
+    "descripcion": "Tercer PV oficial del anime, que anuncia el inicio de emisión en Japón el 5 de abril de 2026. Publicado por el canal oficial de HERO'S Web.",
+    "canal": "HERO'S Web公式チャンネル (https://www.youtube.com/@heros1101)",
+    "fuente": "youtube (verificado vía oEmbed)"
+  },
+  {
+    "youtube_id": "F9Puoy3WUng",
+    "titulo": "「ニワトリ・ファイター」PV｜Amazon Prime Video チャンネル「アニメタイムズ」にて配信中！",
+    "descripcion": "PV oficial que anuncia la distribución del anime en el canal Anime Times de Amazon Prime Video, publicado por el canal oficial de Anime Times.",
+    "canal": "アニメタイムズ公式 / Anime Times Official (https://www.youtube.com/@animetimes-ch)",
+    "fuente": "youtube (verificado vía oEmbed)"
+  }
+]

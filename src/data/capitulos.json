@@ -1,0 +1,582 @@
+[
+  {
+    "numero": 1,
+    "titulo": "El ave que combate demonios",
+    "titulo_ingles": "The Bird Who Fights Demons",
+    "titulo_japones": "獣聚鳥散",
+    "titulo_romaji": "Yūshūchōsan",
+    "volumen": 1,
+    "sinopsis": "El capítulo comienza con el inicio de la lucha de Keiji contra un demonio y un flashback a un año atrás, cuando un anciano rescata a Keiji de unos niños. Keiji y el anciano ven a un demonio oficinista sembrando el caos en la ciudad.",
+    "fuente": "wikipedia + fandom"
+  },
+  {
+    "numero": 2,
+    "titulo": "Muerte por un ave",
+    "titulo_ingles": "Death From a Bird",
+    "titulo_japones": "雲散鳥没",
+    "titulo_romaji": "Unsanchōbotsu",
+    "volumen": 1,
+    "sinopsis": "Keiji rememora en un flashback al demonio que devoró a su hermana. Se enfrenta al demonio oficinista y utiliza la resonancia de su ataque «quiquiriquí» (Cock-a-doodle-doo) para derrotarlo y salvar la ciudad.",
+    "fuente": "wikipedia + fandom"
+  },
+  {
+    "numero": 3,
+    "titulo": "El ave que añora su hogar",
+    "titulo_ingles": "The Homesick Bird",
+    "titulo_japones": "越鳥南枝",
+    "titulo_romaji": "Enchōnanshin",
+    "volumen": 1,
+    "sinopsis": "El tucán Zena rescata a Keiji después de que este comiera un gusano en mal estado y lo esconde en el zoológico mientras se recupera. Un demonio ataca el zoo; Keiji lo derrota con su quiquiriquí, pero Zena muere en la pelea. Keiji toma una de sus plumas y promete entregársela a las hermanas de Zena.",
+    "fuente": "wikipedia + fandom"
+  },
+  {
+    "numero": 4,
+    "titulo": "El ave y la tortuga marina",
+    "titulo_ingles": "The Bird and the Sea Turtle",
+    "titulo_japones": "窮鳥入懐",
+    "titulo_romaji": "Kyūchōnyūkai",
+    "volumen": 1,
+    "sinopsis": "Silver el Tuerto, una tortuga marina, pelea contra Keiji porque no le gusta que haya un ave en su territorio. Comienza usando su ataque Turtle Smash, arrancando pedazos de roca y disparándolos contra Keiji, que los esquiva y responde con su quiquiriquí. Silver da por terminado el combate cuando un anzuelo perfora la pata de Keiji y se lo quita. Un demonio ataca un barco y, como Keiji no sabe nadar, viaja sobre el caparazón de Silver; este lo lanza hacia el demonio y, en pleno vuelo, Keiji lo derrota con su ataque giratorio Spinning-doodle-doo.",
+    "fuente": "wikipedia + fandom"
+  },
+  {
+    "numero": 5,
+    "titulo": "Un ave deja el nido",
+    "titulo_ingles": "A Bird Leaves the Nest",
+    "titulo_japones": "四鳥別離",
+    "titulo_romaji": "Shichōbetsuri",
+    "volumen": 1,
+    "sinopsis": "Se presenta a una polluela, más tarde llamada Piyoko, la más pequeña de un grupo de pollitos que Yasuo Oda («Pops») vende para saldar sus deudas. Piyoko le pide un tatuaje como el suyo y él le dibuja el kanji de «deber». Tajima le ofrece a Yasuo un puesto en una empresa de limpieza, pero desaparece y lo deja endeudado con diez millones de yenes, lo que hace que Yasuo se transforme en demonio. Keiji lo derrota con su quiquiriquí y Yasuo vuelve a la normalidad, porque aún quedaba bondad en su corazón gracias a sus pollitos. La polluela decide irse con Keiji, aunque él le dice que no lo siga porque los niños le rizan la cresta. Al final, se ve a Elizabeth atacando a un demonio con su ataque Thunder Bird.",
+    "fuente": "wikipedia + fandom"
+  },
+  {
+    "numero": 6,
+    "titulo": "Delgado como un ave",
+    "titulo_ingles": "As Thin as a Bird",
+    "titulo_japones": "鵠面鳥形",
+    "titulo_romaji": "Kokumenchōkei",
+    "volumen": 2,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 7,
+    "titulo": "El ave enjaulada",
+    "titulo_ingles": "The Caged Bird",
+    "titulo_japones": "籠鳥檻猿",
+    "titulo_romaji": "Rōchōkanen",
+    "volumen": 2,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 8,
+    "titulo": "Aves en primavera",
+    "titulo_ingles": "Birds in Spring",
+    "titulo_japones": "鳥語花香",
+    "titulo_romaji": "Chōgōkakō",
+    "volumen": 2,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 9,
+    "titulo": "Aliento de ave, vista de ave",
+    "titulo_ingles": "Bird Breath, Bird Vision",
+    "titulo_japones": "禽息鳥視",
+    "titulo_romaji": "Kinsokuchōshi",
+    "volumen": 2,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 10,
+    "titulo": "El ave herida",
+    "titulo_ingles": "The Wounded Bird",
+    "titulo_japones": "傷弓之鳥",
+    "titulo_romaji": "Shōkyūnotori",
+    "volumen": 2,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 11,
+    "titulo": "A la caza del ave",
+    "titulo_ingles": "To Hunt a Bird",
+    "titulo_japones": "鳥尽弓蔵",
+    "titulo_romaji": "Chōjinkyūzō",
+    "volumen": 3,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 12,
+    "titulo": "Un ave grande en un estanque pequeño",
+    "titulo_ingles": "Big Bird in a Small Pond",
+    "titulo_japones": "池魚籠鳥",
+    "titulo_romaji": "Chigyorōchō",
+    "volumen": 3,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 13,
+    "titulo": "El ave cantora de la naturaleza",
+    "titulo_ingles": "Nature's Songbird",
+    "titulo_japones": "花鳥諷詠",
+    "titulo_romaji": "Kachōfūei",
+    "volumen": 3,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 14,
+    "titulo": "Valiente como un ave",
+    "titulo_ingles": "Brave as a Bird",
+    "titulo_japones": "鳥革翬飛",
+    "titulo_romaji": "Chōkakukihi",
+    "volumen": 3,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 15,
+    "titulo": "El canto del ave de la montaña",
+    "titulo_ingles": "The Mountain Bird's Song",
+    "titulo_japones": "落花啼鳥",
+    "titulo_romaji": "Rakkateichō",
+    "volumen": 3,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 16,
+    "titulo": "Un gallo entre grullas",
+    "titulo_ingles": "A Rooster Among Cranes",
+    "titulo_japones": "群鶏一鶴",
+    "titulo_romaji": "Gunkeinoikkaku",
+    "volumen": 4,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 17,
+    "titulo": "Un gallo de un solo truco",
+    "titulo_ingles": "One-Trick Rooster",
+    "titulo_japones": "鶏鳴狗盗",
+    "titulo_romaji": "Keimeikutō",
+    "volumen": 4,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 18,
+    "titulo": "Ave asustadiza",
+    "titulo_ingles": "Scaredy-Bird",
+    "titulo_japones": "鶏犬不寧",
+    "titulo_romaji": "Keikenfunei",
+    "volumen": 4,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 19,
+    "titulo": "Gallo holgazán",
+    "titulo_ingles": "Deadbeat Rooster",
+    "titulo_japones": "家鶏野鶩",
+    "titulo_romaji": "Kakeiyaboku",
+    "volumen": 4,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 20,
+    "titulo": "Mi única ave",
+    "titulo_ingles": "My Only Bird",
+    "titulo_japones": "鶏皮鶴髪",
+    "titulo_romaji": "Keihikakuhatu",
+    "volumen": 4,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 21,
+    "titulo": "Hay más de una forma de desplumar un ave",
+    "titulo_ingles": "More Than One Way to Skin a Bird",
+    "titulo_japones": "割鶏牛刀",
+    "titulo_romaji": "Katsukeigyūtō",
+    "volumen": 5,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 22,
+    "titulo": "Larga vida a la gallina",
+    "titulo_ingles": "Long Live the Hen",
+    "titulo_japones": "牝鶏牡鳴",
+    "titulo_romaji": "Hinkeibomei",
+    "volumen": 5,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 23,
+    "titulo": "Detrás de todo gallo",
+    "titulo_ingles": "Behind Every Rooster",
+    "titulo_japones": "鶏鳴之助",
+    "titulo_romaji": "Keimeinojyō",
+    "volumen": 5,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 24,
+    "titulo": "Aves del mismo plumaje luchan juntas",
+    "titulo_ingles": "Birds of a Feather Fight Together",
+    "titulo_japones": "鶏尸牛従",
+    "titulo_romaji": "Keishigyōsyō",
+    "volumen": 5,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 25,
+    "titulo": "La vista desde la jaula",
+    "titulo_ingles": "The View from the Bird Cage",
+    "titulo_japones": "甕裡醯鶏",
+    "titulo_romaji": "Ourikeikei",
+    "volumen": 6,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 26,
+    "titulo": "El ave inacabada",
+    "titulo_ingles": "The Unfinished Bird",
+    "titulo_japones": "陶犬瓦鶏",
+    "titulo_romaji": "Toukengakei",
+    "volumen": 6,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 27,
+    "titulo": "Acorralar a un ave",
+    "titulo_ingles": "To Back a Bird into a Corner",
+    "titulo_japones": "禽困覆車",
+    "titulo_romaji": "Kinkonfukusha",
+    "volumen": 6,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 28,
+    "titulo": "El huevo no cae lejos del árbol",
+    "titulo_ingles": "The Egg Doesn't Fall Far from the Three",
+    "titulo_japones": "良禽択木",
+    "titulo_romaji": "Ryoukintakuboku",
+    "volumen": 6,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 29,
+    "titulo": "Lo que comparten aves, bestias y árboles",
+    "titulo_ingles": "What Birds, Beasts, and Trees Share",
+    "titulo_japones": "禽獣草木",
+    "titulo_romaji": "Kinjūsōmoku",
+    "volumen": 7,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 30,
+    "titulo": "La bestia con piel de ave",
+    "titulo_ingles": "The Beast in Bird's Clothing",
+    "titulo_japones": "衣冠禽獣",
+    "titulo_romaji": "Ikankinjū",
+    "volumen": 7,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 31,
+    "titulo": "Sigue siendo dorado, ave pony",
+    "titulo_ingles": "Stay Golden, Pony Bird",
+    "titulo_japones": "竜駒鳳雛",
+    "titulo_romaji": "Tatsukomahōsū",
+    "volumen": 7,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 32,
+    "titulo": "El potencial oculto del ave",
+    "titulo_ingles": "The Bird's Hidden Potential",
+    "titulo_japones": "麟子鳳雛",
+    "titulo_romaji": "Linkohōsū",
+    "volumen": 7,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 33,
+    "titulo": "Un pico como de dragón",
+    "titulo_ingles": "Beak Like a Dragon",
+    "titulo_japones": "麟角鳳嘴",
+    "titulo_romaji": "Rinkakuhōsu",
+    "volumen": 8,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 34,
+    "titulo": "No es el enclenque de la bandada",
+    "titulo_ingles": "Not Runt in the Flock",
+    "titulo_japones": "河東三鳳",
+    "titulo_romaji": "Kawatōsanpō",
+    "volumen": 8,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 35,
+    "titulo": "Polluelo agazapado, dragón oculto",
+    "titulo_ingles": "Clutching Chick, Hidden Dragon",
+    "titulo_japones": "伏竜鳳雛",
+    "titulo_romaji": "Fukuryūhōchū",
+    "volumen": 8,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 36,
+    "titulo": "Elegancia bajo el fuego del fénix",
+    "titulo_ingles": "Grace Under Phoenix Fire",
+    "titulo_japones": "景星鳳凰",
+    "titulo_romaji": "Keiseihōō",
+    "volumen": 8,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 37,
+    "titulo": "El gallo de las buenas noticias",
+    "titulo_ingles": "The Rooster of Good News",
+    "titulo_japones": "鳳凰銜書",
+    "titulo_romaji": "Hōōkansho",
+    "volumen": 9,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 38,
+    "titulo": "Una pluma en el carcaj",
+    "titulo_ingles": "Feather in the Quiver",
+    "titulo_japones": "羽翼已成",
+    "titulo_romaji": "Uiyokuissei",
+    "volumen": 9,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 39,
+    "titulo": "Perdidos en la migración",
+    "titulo_ingles": "Lost in Migration",
+    "titulo_japones": "鴻雁哀鳴",
+    "titulo_romaji": "Kōganainmei",
+    "volumen": 9,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 40,
+    "titulo": "La tortuga y el leopardo",
+    "titulo_ingles": "The Tortoise and the Leopard",
+    "titulo_japones": "曳尾塗中",
+    "titulo_romaji": "Eibitochū",
+    "volumen": 9,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 41,
+    "titulo": "Es difícil batir una sola ala",
+    "titulo_ingles": "It's Hard for One Wing to Flap Alone",
+    "titulo_japones": "孤掌難鳴",
+    "titulo_romaji": "Koshōnanmei",
+    "volumen": 9,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 42,
+    "titulo": "Pluma pequeña, alas grandes",
+    "titulo_ingles": "Little Feather, Big Wings",
+    "titulo_japones": "羽翮飛肉",
+    "titulo_romaji": "Ugehiniku",
+    "volumen": 10,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 43,
+    "titulo": "Como alas para un tigre",
+    "titulo_ingles": "Like Wings on a Tiger",
+    "titulo_japones": "為虎傅翼",
+    "titulo_romaji": "Ikofuyoku",
+    "volumen": 10,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 44,
+    "titulo": "Con el pico en la piedra de afilar",
+    "titulo_ingles": "Keep Your Beak to the Grindstone",
+    "titulo_japones": "射石飲羽",
+    "titulo_romaji": "Shasekiin'u",
+    "volumen": 10,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 45,
+    "titulo": "El lamento del ave",
+    "titulo_ingles": "The Bird's Lament",
+    "titulo_japones": "哀鳴啾啾",
+    "titulo_romaji": "Aimeshūshū",
+    "volumen": 10,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 46,
+    "titulo": "Diez mil alas sobre las nubes",
+    "titulo_ingles": "Ten Thousand Wings Above the Clouds",
+    "titulo_japones": "万里鵬翼",
+    "titulo_romaji": "Banrihōyoku",
+    "volumen": 10,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 47,
+    "titulo": "Esperando la pluma adecuada",
+    "titulo_ingles": "Waiting for the Right Feather",
+    "titulo_japones": "戢鱗潜翼",
+    "titulo_romaji": "Shūrinsenyoku",
+    "volumen": 10,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 48,
+    "titulo": "Bajo el ala de un padre",
+    "titulo_ingles": "Under a Father's Wing",
+    "titulo_japones": "翼覆嫗煦",
+    "titulo_romaji": "Tsubasafukuku",
+    "volumen": 11,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 49,
+    "titulo": "Potencial sin eclosionar",
+    "titulo_ingles": "Unhatched Potential",
+    "titulo_japones": "臥竜鳳雛",
+    "titulo_romaji": "Garyōhōsū",
+    "volumen": 11,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 50,
+    "titulo": "La pluma es tan poderosa como la espada",
+    "titulo_ingles": "The Quill Is as Mighty as the Sword",
+    "titulo_japones": "干戚羽旄",
+    "titulo_romaji": "Kansekiubou",
+    "volumen": 11,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 51,
+    "titulo": "Tu reputación precede a tu pico",
+    "titulo_ingles": "Your Reputation Precedes Your Beak",
+    "titulo_japones": "鶴鳴九皐",
+    "titulo_romaji": "Tsurumeikyūsō",
+    "volumen": 11,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 52,
+    "titulo": "Un arpa, una grulla",
+    "titulo_ingles": "One Harp, One Crane",
+    "titulo_japones": "一琴一鶴",
+    "titulo_romaji": "Ikkonikkaku",
+    "volumen": 11,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 53,
+    "titulo": "El cuello anhelante de la grulla",
+    "titulo_ingles": "The Longing Neck of the Crane",
+    "titulo_japones": "延頸鶴望",
+    "titulo_romaji": "Enkeikakumochi",
+    "volumen": 12,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 54,
+    "titulo": "Una grulla sobre el país",
+    "titulo_ingles": "Crane Over the Country",
+    "titulo_japones": "懿公喜鶴",
+    "titulo_romaji": "Ikōkikitsuru",
+    "volumen": 12,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 55,
+    "titulo": "Dos alas de la misma ave",
+    "titulo_ingles": "Two Wings of the Same Bird",
+    "titulo_japones": "蛇蚹蜩翼",
+    "titulo_romaji": "Jazokuchōyoku",
+    "volumen": 12,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 56,
+    "titulo": "No puedes esconder el pico para siempre",
+    "titulo_ingles": "Can't Hide Your Beak Forever",
+    "titulo_japones": "蔵頭露尾",
+    "titulo_romaji": "Zōtōrotei",
+    "volumen": 12,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 57,
+    "titulo": "Otro par de alas",
+    "titulo_ingles": "Another Pair of Wings",
+    "titulo_japones": "傅虎為翼",
+    "titulo_romaji": "Fukoiwotsubasa",
+    "volumen": 12,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  },
+  {
+    "numero": 58,
+    "titulo": "¿Cuántas plumas hacen falta para hundir un barco?",
+    "titulo_ingles": "How Many Feathers to Sink a Ship?",
+    "titulo_japones": "積羽沈舟",
+    "titulo_romaji": "Sekiuchinshū",
+    "volumen": 12,
+    "sinopsis": null,
+    "fuente": "wikipedia"
+  }
+]

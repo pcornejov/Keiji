@@ -1,0 +1,36 @@
+{
+  "nombre": "Keiji",
+  "nombre_japones": "ケイジ",
+  "imagen_url": "https://s4.anilist.co/file/anilistcdn/character/large/b212585-9H3fZVoe95h2.png",
+  "descripcion": "Gallo curtido en mil batallas que viaja de un lugar a otro sin querer atarse a nada, pues se autoproclama «especie migratoria». Dotado de una fuerza excepcional y una voz portentosa, busca derrotar a todo kijū (demonio mutante) que se cruce en su camino. Le incomoda que las mujeres lloren por su culpa y siente desdén por los niños, aunque guarda debilidad por algunos, como Piyoko.",
+  "biografia": "Keiji es el protagonista de Rooster Fighter y de su adaptación al anime. Es un gallo leghorn macho adulto, de plumaje blanco crema, pico y patas amarillos, cresta y barbillas rojas y ojos marrones. Al comienzo de la serie, antes del salto temporal a un año atrás, lucía cicatrices por el cuerpo y una en el lado izquierdo de la cabeza. Se describe a sí mismo como un «ave migratoria» con la norma de no quedarse en ningún sitio más de lo necesario, y sigue un estricto código de conducta basado en el respeto y la gratitud. Pertenece a la familia Goshikidori, un linaje de gallinas dotado de habilidades marciales para derrotar demonios. Su familia incluye a su padre Keizan, su madre Sarii (fallecida), su hermana menor Sara (fallecida), su medio hermano menor Keisuke, su abuelo paterno Keisho, su tía Kate y su antepasado Keizaemon. En japonés le pone voz Kenta Miyake y en inglés Patrick Seitz.",
+  "habilidades": [
+    {
+      "nombre": "Kokekokko (quiquiriquí)",
+      "descripcion": "Su ataque característico: un canto de gallo cuya frecuencia sonora es tan potente que induce resonancia y hace estallar la cabeza de los kijū gigantes. En el anime, un anciano lo compara con el fenómeno físico de la resonancia capaz de romper el cristal, aunque el poder de Keiji supera toda comprensión humana."
+    },
+    {
+      "nombre": "Super Kokekokko",
+      "descripcion": "Versión amplificada de su grito, con la que llegó a seccionar la base de un pináculo rocoso para taponar la crecida de un río tras el colapso de una presa."
+    },
+    {
+      "nombre": "Spinning-doodle-doo (quiquiriquí giratorio)",
+      "descripcion": "Ataque giratorio ejecutado en pleno vuelo, con el que derrotó a un demonio en el mar tras ser lanzado por la tortuga Silver el Tuerto."
+    },
+    {
+      "nombre": "Fuerza y resistencia excepcionales",
+      "descripcion": "Posee una fuerza descomunal para ser un gallo, herencia del linaje Goshikidori, y una gran capacidad para encajar y sobrevivir a heridas graves."
+    },
+    {
+      "nombre": "Puntería con el pico",
+      "descripcion": "Tiene una precisión extraordinaria al lanzar objetos con el pico; llegó a inutilizar el brazo-arma del diablo Yuji arrojando metal deformado dentro de su cañón."
+    },
+    {
+      "nombre": "Poder latente",
+      "descripcion": "Al presenciar la aparente muerte de su amigo Morio, despertó un poder dormido en su interior con el que destruyó la esfera del pecho del diablo Hikari."
+    }
+  ],
+  "historia": "En el pasado, la hermana menor de Keiji, Sara, fue devorada ante sus ojos por un kijū feroz: un demonio gigante de piel blanca con una marca circular en el cuello, conocido como «el Demonio Blanco». Desde aquel día, Keiji vaga por Japón derrotando demonios mutantes mientras busca al que mató a su hermana para vengarla. En su viaje conoce a un anciano maestro jubilado que lo acoge, y derrota al demonio en que se convierte un oficinista desesperado. Más tarde se le une la polluela Piyoko, que lo cuida tras una batalla y a quien él mismo da nombre; la gallina Elizabeth, con quien tuvo un romance de una noche y que, tras buscar venganza contra él, decide unirse a su causa; y Morio, un demonio bondadoso abandonado por su huésped humano. Su medio hermano Keisuke le revela que ambos descienden de la familia Goshikidori y que su padre, Keizan, ha sido capturado por unos seres de aspecto humano llamados diablos. En la ciudad de Akamori, Keiji y sus aliados se enfrentan a los diablos Yuji e Hikari y descubren que sobre ellos están Kugone, la mujer que crea demonios por todo Japón, y su líder Gakuma, que resulta ser el Demonio Blanco que Keiji lleva tanto tiempo persiguiendo. Además, el arma con forma de fénix que usa ese demonio se parece a su hermana Sara, por lo que Keiji parte decidido a dar caza a Gakuma y rescatarla.",
+  "fuente": "anilist + fandom + wikipedia",
+  "url_fuente": "https://rooster-fighter.fandom.com/wiki/Keiji"
+}

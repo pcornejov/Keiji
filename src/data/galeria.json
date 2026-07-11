@@ -1,0 +1,114 @@
+[
+  {
+    "imagen_url": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx127554-qXczrBrFMXBM.jpg",
+    "titulo": "Portada del manga",
+    "descripcion": "Portada principal del manga Rooster Fighter en AniList (cubierta del tomo 1 japonés, protagonizada por Keiji).",
+    "fuente": "anilist",
+    "url_fuente": "https://anilist.co/manga/127554"
+  },
+  {
+    "imagen_url": "https://s4.anilist.co/file/anilistcdn/media/manga/banner/127554-DfdPe0zdiHRW.jpg",
+    "titulo": "Banner del manga",
+    "descripcion": "Imagen de cabecera (banner) del manga Rooster Fighter en AniList.",
+    "fuente": "anilist",
+    "url_fuente": "https://anilist.co/manga/127554"
+  },
+  {
+    "imagen_url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx179813-cLHpUPV1IiEm.jpg",
+    "titulo": "Póster del anime",
+    "descripcion": "Imagen de portada del anime Rooster Fighter (2026) en AniList.",
+    "fuente": "anilist",
+    "url_fuente": "https://anilist.co/anime/179813"
+  },
+  {
+    "imagen_url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/179813-RZI6o4qilPyH.jpg",
+    "titulo": "Banner del anime",
+    "descripcion": "Imagen de cabecera (banner) del anime Rooster Fighter en AniList.",
+    "fuente": "anilist",
+    "url_fuente": "https://anilist.co/anime/179813"
+  },
+  {
+    "imagen_url": "https://s4.anilist.co/file/anilistcdn/character/large/b212585-9H3fZVoe95h2.png",
+    "titulo": "Keiji",
+    "descripcion": "Retrato oficial de Keiji, el gallo protagonista.",
+    "fuente": "anilist",
+    "url_fuente": "https://anilist.co/character/212585"
+  },
+  {
+    "imagen_url": "https://s4.anilist.co/file/anilistcdn/character/large/b348018-EhQcf7Q8e986.png",
+    "titulo": "Piyoko",
+    "descripcion": "Retrato de Piyoko, la polluela que acompaña a Keiji.",
+    "fuente": "anilist",
+    "url_fuente": "https://anilist.co/character/348018"
+  },
+  {
+    "imagen_url": "https://s4.anilist.co/file/anilistcdn/character/large/b348019-vZ4p1kLBQTtb.png",
+    "titulo": "Elizabeth",
+    "descripcion": "Retrato de Elizabeth, la gallina que combate demonios con su bastón eléctrico.",
+    "fuente": "anilist",
+    "url_fuente": "https://anilist.co/character/348019"
+  },
+  {
+    "imagen_url": "https://s4.anilist.co/file/anilistcdn/character/large/b368755-UQ4cxbkNdnBK.png",
+    "titulo": "Keisuke",
+    "descripcion": "Retrato de Keisuke, medio hermano menor de Keiji.",
+    "fuente": "anilist",
+    "url_fuente": "https://anilist.co/character/368755"
+  },
+  {
+    "imagen_url": "https://s4.anilist.co/file/anilistcdn/character/large/b368754-Ug3yDowSwmkM.png",
+    "titulo": "Morio",
+    "descripcion": "Retrato de Morio, el demonio bondadoso amigo de Keiji.",
+    "fuente": "anilist",
+    "url_fuente": "https://anilist.co/character/368754"
+  },
+  {
+    "imagen_url": "https://static.wikia.nocookie.net/rooster-fighter/images/b/b0/Rooster_Fighter_Vol.1.jpg/revision/latest?cb=20260123210724",
+    "titulo": "Portada del volumen 1 (edición en inglés)",
+    "descripcion": "Cubierta del volumen 1 de Rooster Fighter en su edición en inglés de VIZ Media.",
+    "fuente": "fandom",
+    "url_fuente": "https://rooster-fighter.fandom.com/wiki/Vol._1"
+  },
+  {
+    "imagen_url": "https://static.wikia.nocookie.net/rooster-fighter/images/8/80/Rooster_fighter_key_visual.webp/revision/latest?cb=20260326032337",
+    "titulo": "Imagen promocional del anime",
+    "descripcion": "Key visual oficial de la adaptación al anime de Rooster Fighter (2026).",
+    "fuente": "fandom",
+    "url_fuente": "https://rooster-fighter.fandom.com/wiki/Rooster_Fighter_(anime)"
+  },
+  {
+    "imagen_url": "https://static.wikia.nocookie.net/rooster-fighter/images/b/b6/554849.jpg/revision/latest?cb=20250608200321",
+    "titulo": "Keiji (arte del manga)",
+    "descripcion": "Ilustración de Keiji usada en su ficha de la wiki de Rooster Fighter.",
+    "fuente": "fandom",
+    "url_fuente": "https://rooster-fighter.fandom.com/wiki/Keiji"
+  },
+  {
+    "imagen_url": "https://static.wikia.nocookie.net/rooster-fighter/images/f/f8/KeisukeImagem.jpg/revision/latest?cb=20260523144552",
+    "titulo": "Keisuke (arte)",
+    "descripcion": "Ilustración de Keisuke usada en su ficha de la wiki de Rooster Fighter.",
+    "fuente": "fandom",
+    "url_fuente": "https://rooster-fighter.fandom.com/wiki/Keisuke"
+  },
+  {
+    "imagen_url": "https://static.wikia.nocookie.net/rooster-fighter/images/3/39/Piyoko.webp/revision/latest?cb=20260326032039",
+    "titulo": "Piyoko (arte)",
+    "descripcion": "Ilustración de Piyoko usada en su ficha de la wiki de Rooster Fighter.",
+    "fuente": "fandom",
+    "url_fuente": "https://rooster-fighter.fandom.com/wiki/Piyoko"
+  },
+  {
+    "imagen_url": "https://static.wikia.nocookie.net/rooster-fighter/images/5/5d/A_Rooster_Among_Cranes.png/revision/latest?cb=20260419160619",
+    "titulo": "Episodio 1: Un gallo entre grullas",
+    "descripcion": "Imagen del primer episodio del anime, «A Rooster Among Cranes».",
+    "fuente": "fandom",
+    "url_fuente": "https://rooster-fighter.fandom.com/wiki/Episode_1"
+  },
+  {
+    "imagen_url": "https://static.wikia.nocookie.net/rooster-fighter/images/e/e6/Homing_in_on_Desire.png/revision/latest?cb=20260510110012",
+    "titulo": "Episodio 4: Tras el rastro del deseo",
+    "descripcion": "Imagen del cuarto episodio del anime, «Homing in on Desire».",
+    "fuente": "fandom",
+    "url_fuente": "https://rooster-fighter.fandom.com/wiki/Episode_4"
+  }
+]

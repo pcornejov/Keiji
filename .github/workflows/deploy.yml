@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - claude/keiji-astro-encyclopedia-b8vbbv
   workflow_dispatch:
 
 permissions:

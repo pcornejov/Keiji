@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const personajes = await getCollection('personajes');
+
+const grupos = [
+  { id: 'titulo-aliados', titulo: 'Aliados', tipo: 'aliado' },
+  { id: 'titulo-demonios', titulo: 'Demonios (kijū)', tipo: 'demonio' },
+  { id: 'titulo-secundarios', titulo: 'Secundarios', tipo: 'secundario' },
+].map((grupo) => ({
+  ...grupo,
+  personajes: personajes.filter((p) => p.data.tipo === grupo.tipo),
+}));
+
+const etiquetaTipo: Record<string, string> = {
+  aliado: 'Aliado',
+  demonio: 'Demonio',
+  secundario: 'Secundario',
+};
+---
+
+<Base
+  titulo="Personajes"
+  descripcion="Personajes de Rooster Fighter: los aliados de Keiji, los demonios kijū a los que se enfrenta y los secundarios que cruza en su viaje."
+>
+  <section class="hero">
+    <p class="hero-kicker">Aliados, demonios y secundarios</p>
+    <h1>Personajes</h1>
+    <p class="hero-texto">
+      Los {personajes.length} personajes de <strong>Rooster Fighter</strong> recogidos
+      hasta ahora en esta enciclopedia: las aves que acompañan a Keiji en su viaje,
+      los demonios kijū a los que se enfrenta —del amistoso Morio al temible Demonio
+      Blanco— y otros personajes que marcan su camino.
+    </p>
+  </section>
+
+  {grupos.map((grupo) => (
+    <section class="grupo-personajes" aria-labelledby={grupo.id}>
+      <h2 class="seccion-titulo" id={grupo.id}>{grupo.titulo}</h2>
+      <div class="personajes-grid">
+        {grupo.personajes.map(({ data }) => {
+          const media = data.imagen_url ? (
+            <img
+              class="card__retrato"
+              src={data.imagen_url}
+              alt={`Retrato de ${data.nombre}`}
+              loading="lazy"
+              width="460"
+              height="613"
+            />
+          ) : (
+            <div class="card__placeholder" aria-hidden="true">
+              <span class="card__placeholder-inicial">{data.nombre.charAt(0)}</span>
+            </div>
+          );
+          const cuerpo = (
+            <div class="card__cuerpo">
+              <span class={`badge badge--${data.tipo}`}>{etiquetaTipo[data.tipo]}</span>
+              <h3 class="card__titulo">{data.nombre}</h3>
+              {data.nombre_japones && (
+                <p class="card__nombre-jp" lang="ja">{data.nombre_japones}</p>
+              )}
+              <p class="card__texto card__texto--recortado">{data.descripcion}</p>
+            </div>
+          );
+          return (
+            <article class="card">
+              {data.url_fuente ? (
+                <a class="card__enlace" href={data.url_fuente} rel="noopener">
+                  {media}
+                  {cuerpo}
+                </a>
+              ) : (
+                <>
+                  {media}
+                  {cuerpo}
+                </>
+              )}
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  ))}
+</Base>

@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import obra from '../data/obra.json';
 
 const videos = await getCollection('videos');
 
@@ -22,6 +23,9 @@ const items = videos.map(({ data }) => {
 <Base
   titulo="Videos"
   descripcion="Tráilers y PVs oficiales del anime de Rooster Fighter (Niwatori Fighter), embebidos desde los canales oficiales de YouTube."
+  ogTitle="Videos y tráilers de Rooster Fighter"
+  ogDescription="Tráilers y PV oficiales del anime Rooster Fighter, verificados en YouTube."
+  ogImage={obra.cover_url}
 >
   <section class="hero">
     <p class="hero-kicker">Tráilers y PVs oficiales</p>

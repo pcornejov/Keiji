@@ -4,9 +4,23 @@ import '../styles/global.css';
 interface Props {
   titulo: string;
   descripcion?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string | null;
 }
 
-const { titulo, descripcion = 'Enciclopedia de Keiji, el gallo protagonista del manga Rooster Fighter (Niwatori Fighter) de Shu Sakuratani.' } = Astro.props;
+const {
+  titulo,
+  descripcion = 'Enciclopedia de Keiji, el gallo protagonista del manga Rooster Fighter (Niwatori Fighter) de Shu Sakuratani.',
+  ogTitle,
+  ogDescription,
+  ogImage,
+} = Astro.props;
+
+const metaOgTitle = ogTitle ?? titulo;
+const metaOgDescription = ogDescription ?? descripcion;
+const metaOgImage =
+  ogImage ?? 'https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx127554-qXczrBrFMXBM.jpg';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const enlaces = [
@@ -25,7 +39,22 @@ const rutaActual = Astro.url.pathname;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={descripcion} />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <link rel="canonical" href={Astro.url.href} />
     <title>{titulo} · Enciclopedia Rooster Fighter</title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Enciclopedia de Keiji" />
+    <meta property="og:title" content={metaOgTitle} />
+    <meta property="og:description" content={metaOgDescription} />
+    <meta property="og:image" content={metaOgImage} />
+    <meta property="og:url" content={Astro.url.href} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={metaOgTitle} />
+    <meta name="twitter:description" content={metaOgDescription} />
+    <meta name="twitter:image" content={metaOgImage} />
   </head>
   <body>
     <header class="cabecera">

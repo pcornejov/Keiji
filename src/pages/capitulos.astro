@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import obra from '../data/obra.json';
 
 const capitulos = (await getCollection('capitulos'))
   .map(({ data }) => data)
@@ -33,6 +34,9 @@ const fechaLegible = (iso: string) =>
 <Base
   titulo="Capítulos"
   descripcion="Guía de capítulos y episodios de Rooster Fighter: los 58 capítulos del manga agrupados en 12 volúmenes y los 12 episodios del anime con sus fechas de emisión."
+  ogTitle="Capítulos del manga Rooster Fighter — los 58 capítulos"
+  ogDescription="Listado completo de los capítulos de Rooster Fighter, con títulos original y en español."
+  ogImage={obra.cover_url}
 >
   <section class="hero">
     <p class="hero-kicker">Manga y anime</p>

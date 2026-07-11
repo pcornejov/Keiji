@@ -1,10 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
+import obra from '../data/obra.json';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const ogImage = obra.banner_url ?? obra.cover_url;
 ---
 
-<Base titulo="Inicio">
+<Base
+  titulo="Inicio"
+  ogTitle="Rooster Fighter — Enciclopedia de Keiji, el gallo que combate demonios"
+  ogDescription="Guía no oficial del manga y anime Rooster Fighter: sinopsis, personajes, capítulos, galería y videos de Keiji."
+  ogImage={ogImage}
+>
   <section class="hero">
     <p class="hero-kicker">Enciclopedia no oficial</p>
     <h1>Keiji, el gallo que pelea contra demonios</h1>

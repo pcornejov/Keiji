@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import Galeria from '../components/Galeria.tsx';
 
 const galeria = await getCollection('galeria');
+const ogImage = galeria[0]?.data.imagen_url;
 const items = galeria.map(({ data }) => ({
   imagen_url: data.imagen_url,
   titulo: data.titulo,
@@ -16,6 +17,9 @@ const items = galeria.map(({ data }) => ({
 <Base
   titulo="Galería"
   descripcion="Galería de imágenes de Rooster Fighter: portadas, banners y retratos de Keiji y los demás personajes, con visor a pantalla completa."
+  ogTitle="Galería de Rooster Fighter — arte e imágenes oficiales"
+  ogDescription="Portadas, banners y retratos oficiales de Keiji y el resto del elenco."
+  ogImage={ogImage}
 >
   <section class="hero">
     <p class="hero-kicker">Portadas, banners y retratos</p>

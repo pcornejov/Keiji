@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import obra from '../data/obra.json';
 
 const personajes = await getCollection('personajes');
 
@@ -23,6 +24,9 @@ const etiquetaTipo: Record<string, string> = {
 <Base
   titulo="Personajes"
   descripcion="Personajes de Rooster Fighter: los aliados de Keiji, los demonios kijū a los que se enfrenta y los secundarios que cruza en su viaje."
+  ogTitle="Personajes de Rooster Fighter — aliados y demonios"
+  ogDescription="Conoce a los aliados y los demonios kijū que enfrenta Keiji en su viaje."
+  ogImage={obra.cover_url}
 >
   <section class="hero">
     <p class="hero-kicker">Aliados, demonios y secundarios</p>

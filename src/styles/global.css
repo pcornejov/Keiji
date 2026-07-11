@@ -1376,3 +1376,473 @@ a.card p {
     font-size: var(--texto-hero);
   }
 }
+
+/* ==========================================================================
+   ITERACIÓN 5 — Página /galeria/ (mosaico + lightbox en isla React)
+   ==========================================================================
+   Fuente de datos: src/data/galeria.json (16 registros con imagen_url,
+   titulo, descripcion, fuente, url_fuente). Las imágenes mezclan orientaciones
+   (covers ~2:3, banners ~16:9 o más anchos, retratos de personaje ~1:1 o 3:4,
+   stills de episodio ~16:9), así que el grid usa una celda cuadrada uniforme
+   con object-fit: cover para el mosaico, y el lightbox muestra la imagen
+   completa sin recortar (object-fit: contain) respetando su proporción real.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   GALERIA-GRID — mosaico responsivo con auto-fill (no fijo a N columnas)
+   --------------------------------------------------------------------------
+   Estructura HTML esperada (ver .galeria-item más abajo para cada celda).
+   Si el grid completo vive dentro de la isla React del lightbox (recomendado,
+   ver comentario de .lightbox), este contenedor es parte del mismo componente:
+
+   <div class="galeria-grid">
+     <button class="galeria-item" type="button" data-indice="0">…</button>
+     <button class="galeria-item" type="button" data-indice="1">…</button>
+     … 16 botones, uno por registro de galeria.json …
+   </div>
+
+   auto-fill + minmax reparte tantas columnas como quepan sin fijar un número:
+   en pantallas angostas caben 2, en tabletas 3-4, en escritorio ancho 5-6+,
+   sin necesidad de breakpoints específicos por conteo de columnas.
+   -------------------------------------------------------------------------- */
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: var(--espacio-3);
+  padding-block: var(--espacio-5);
+}
+
+@media (min-width: 640px) {
+  .galeria-grid {
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+    gap: var(--espacio-4);
+  }
+}
+
+@media (min-width: 960px) {
+  .galeria-grid {
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+    gap: var(--espacio-5);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   GALERIA-ITEM — celda clicable del mosaico (abre el lightbox)
+   --------------------------------------------------------------------------
+   Es un <button> (no <a>/<figure>) porque su acción es abrir el lightbox,
+   no navegar. El título vive SIEMPRE en el DOM dentro de
+   .galeria-item__titulo (nunca solo en :hover ni por content: en CSS), así
+   que un lector de pantalla lo anuncia aunque nunca haya "hover". El overlay
+   solo controla la VISIBILIDAD (opacity), que no afecta al árbol de
+   accesibilidad, así que cumple el requisito sin sacrificar el diseño.
+
+   Estructura HTML esperada por celda:
+
+   <button
+     type="button"
+     class="galeria-item"
+     data-indice="3"
+     aria-haspopup="dialog"
+   >
+     <img
+       class="galeria-item__imagen"
+       src={imagen_url}
+       alt=""
+       loading="lazy"
+       width="400" height="400"
+     />
+     <span class="galeria-item__overlay">
+       <span class="galeria-item__titulo">Banner del anime</span>
+     </span>
+   </button>
+
+   Nota sobre el alt vacío: el nombre accesible del botón ya lo aporta el
+   texto visible en .galeria-item__titulo (que además se usa como
+   accesible-name del botón por contener texto real); alt="" evita que un
+   lector de pantalla anuncie el título dos veces. Si se prefiere describir
+   la imagen en sí (no solo repetir el título), usar
+   alt={`Vista previa: ${titulo}`} y quitar el span de título duplicado del
+   nombre accesible con aria-hidden en .galeria-item__overlay — cualquiera
+   de las dos rutas es válida, elegir una y ser consistente en las 16 celdas.
+   -------------------------------------------------------------------------- */
+.galeria-item {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1; /* celda cuadrada uniforme: el mosaico no se distorsiona */
+  padding: 0;
+  border: 2px solid var(--color-tinta);
+  border-radius: var(--radio-md);
+  overflow: hidden; /* recorta imagen y overlay a la celda */
+  background-color: var(--superficie-hundida); /* placeholder mientras carga */
+  cursor: pointer;
+  box-shadow: var(--sombra-sm);
+  transition: box-shadow var(--transicion), transform var(--transicion);
+}
+
+.galeria-item:hover,
+.galeria-item:focus-visible {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--sombra-vineta);
+}
+
+/* outline hacia adentro: overflow:hidden recortaría un outline exterior */
+.galeria-item:focus-visible {
+  outline: 3px solid var(--anillo-foco);
+  outline-offset: -3px;
+  border-radius: var(--radio-md);
+}
+
+.galeria-item__imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform var(--transicion), filter var(--transicion);
+}
+
+/* Zoom leve + oscurecido en hover/focus, para dar pie al overlay */
+.galeria-item:hover .galeria-item__imagen,
+.galeria-item:focus-visible .galeria-item__imagen {
+  transform: scale(1.06);
+  filter: brightness(0.7);
+}
+
+/* Overlay con degradado desde tinta (abajo) a transparente (arriba).
+   Presente siempre en el DOM; solo su opacidad cambia con hover/focus. */
+.galeria-item__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--espacio-2);
+  background: linear-gradient(
+    to top,
+    rgba(26, 23, 20, 0.88) 0%,
+    rgba(26, 23, 20, 0.35) 55%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity var(--transicion);
+  pointer-events: none; /* el click siempre lo recibe el <button> */
+}
+
+.galeria-item:hover .galeria-item__overlay,
+.galeria-item:focus-visible .galeria-item__overlay {
+  opacity: 1;
+}
+
+.galeria-item__titulo {
+  width: 100%;
+  font-family: var(--fuente-display);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-negrita);
+  line-height: 1.25;
+  color: var(--texto-invertido); /* crema sobre tinta: contraste ≈15:1 */
+  text-align: left;
+  /* Máx. 2 líneas dentro de la celda pequeña */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .galeria-item__titulo {
+    font-size: var(--texto-sm);
+  }
+}
+
+/* ==========================================================================
+   LIGHTBOX — isla React (interactividad: abrir, cerrar, prev/next, teclado)
+   ==========================================================================
+   Se recomienda que la isla React envuelva TANTO el .galeria-grid como el
+   .lightbox en un único componente (p. ej. <GaleriaInteractiva client:visible
+   items={galeria} />), porque cada .galeria-item necesita un onClick que
+   abra el lightbox en su índice: si el grid quedara como HTML estático de
+   Astro, esos botones no tendrían forma de comunicarse con la isla sin
+   eventos globales. Astro solo pasa `items` (el JSON de galeria.json) como
+   prop serializable; el resto vive en el componente.
+
+   PROPS del componente (alto nivel):
+     items: Array<{
+       imagen_url: string;
+       titulo: string;
+       descripcion: string;
+       fuente: string;
+       url_fuente: string;
+     }>
+
+   ESTADO interno (alto nivel):
+     indiceActivo: number | null
+       // null = lightbox cerrado. Un número = índice mostrado de `items`.
+     cerrando: boolean
+       // true durante la transición de salida, para no desmontar el
+       // contenido antes de que termine la animación CSS (ver más abajo).
+     disparadorRef: React.RefObject<HTMLElement>
+       // referencia al <button> de .galeria-item que abrió el lightbox,
+       // para devolver el foco ahí al cerrar (accesibilidad de teclado).
+
+   HANDLERS (alto nivel):
+     abrir(indice, elementoDisparador):
+       - guarda elementoDisparador en disparadorRef
+       - setIndiceActivo(indice); setCerrando(false)
+       - bloquea el scroll del body (document.body.style.overflow = "hidden")
+       - mueve el foco a .lightbox__cerrar tras el próximo paint
+     cerrar():
+       - setCerrando(true) → dispara la transición de salida vía clase CSS
+       - tras ~220ms (duración de la transición, tocar con setTimeout u
+         onTransitionEnd en .lightbox) → setIndiceActivo(null),
+         restaura overflow del body, devuelve el foco a disparadorRef.current
+     anterior() / siguiente():
+       - setIndiceActivo(i => (i - 1 + items.length) % items.length) / (i + 1) % items.length
+       - no cierra el lightbox, solo cambia el item mostrado (misma animación
+         de imagen no es obligatoria; basta con que cambie el src)
+     onKeyDown global (useEffect con addEventListener en document mientras
+     está abierto):
+       - "Escape" → cerrar()
+       - "ArrowLeft" → anterior()
+       - "ArrowRight" → siguiente()
+     onClick en .lightbox (el overlay completo):
+       - si el click ocurre fuera de .lightbox__contenido → cerrar()
+       - .lightbox__contenido debe hacer event.stopPropagation() en su
+         propio onClick para no cerrar al clickear la imagen/pie
+
+   MARCADO esperado (siempre montado en el DOM, visible se controla con
+   clases para poder animar apertura Y cierre con CSS puro; ver clases):
+
+   <div
+     class="lightbox{indiceActivo !== null ? ' lightbox--visible' : ''}"
+     role="dialog"
+     aria-modal="true"
+     aria-label={itemActivo?.titulo ?? "Visor de imagen"}
+     hidden={indiceActivo === null && !cerrando ? true : undefined}
+   >
+     <button
+       type="button"
+       class="lightbox__cerrar"
+       aria-label="Cerrar"
+       onClick={cerrar}
+     >
+       ×
+     </button>
+
+     <div class="lightbox__contenido" onClick={(e) => e.stopPropagation()}>
+       <img
+         class="lightbox__imagen"
+         src={itemActivo?.imagen_url}
+         alt={itemActivo?.titulo ?? ""}
+       />
+       <div class="lightbox__pie">
+         <h2 class="lightbox__titulo">{itemActivo?.titulo}</h2>
+         <p class="lightbox__descripcion">{itemActivo?.descripcion}</p>
+         <a class="lightbox__fuente" href={itemActivo?.url_fuente} target="_blank" rel="noopener noreferrer">
+           Ver fuente ({itemActivo?.fuente})
+         </a>
+       </div>
+     </div>
+
+     <nav class="lightbox__nav" aria-label="Navegación de la galería">
+       <button type="button" class="lightbox__nav-boton lightbox__nav-boton--prev" aria-label="Imagen anterior" onClick={anterior}>‹</button>
+       <button type="button" class="lightbox__nav-boton lightbox__nav-boton--next" aria-label="Imagen siguiente" onClick={siguiente}>›</button>
+     </nav>
+   </div>
+
+   Nota sobre "cerrando": si se prefiere una implementación más simple sin
+   ese estado intermedio, basta con NO desmontar el contenido cuando
+   indiceActivo pasa a null en el mismo tick, sino solo quitar la clase
+   `lightbox--visible`; el contenido puede seguir mostrando el último item
+   visto mientras se desvanece. Cualquiera de los dos enfoques usa las
+   mismas clases CSS de abajo.
+   -------------------------------------------------------------------------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espacio-4);
+  /* Fondo semitransparente con la tinta del sitio (no gris genérico) */
+  background-color: rgba(26, 23, 20, 0.92);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 220ms ease, visibility 0s linear 220ms;
+}
+
+.lightbox--visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 220ms ease, visibility 0s linear 0s;
+}
+
+.lightbox__contenido {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: min(90vw, 60rem);
+  max-height: 90dvh;
+  background-color: var(--superficie);
+  border: 3px solid var(--color-tinta);
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-lg);
+  overflow: hidden;
+  /* Animación de entrada: leve escala + desplazamiento vertical */
+  transform: scale(0.94) translateY(12px);
+  transition: transform 220ms ease;
+}
+
+.lightbox--visible .lightbox__contenido {
+  transform: scale(1) translateY(0);
+}
+
+/* La imagen se ve COMPLETA (sin recortar): contain, no cover */
+.lightbox__imagen {
+  width: 100%;
+  max-height: 65dvh;
+  object-fit: contain;
+  background-color: var(--color-noche); /* letterbox si la proporción no calza */
+}
+
+.lightbox__pie {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-1);
+  padding: var(--espacio-4);
+  overflow-y: auto;
+}
+
+.lightbox__titulo {
+  font-size: var(--texto-lg);
+}
+
+.lightbox__descripcion {
+  font-size: var(--texto-sm);
+  color: var(--texto-secundario);
+}
+
+.lightbox__fuente {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-medio);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Botón de cerrar: esquina superior derecha del overlay (no del contenido),
+   así queda accesible sin importar cuánto ocupe la imagen */
+.lightbox__cerrar {
+  position: absolute;
+  top: var(--espacio-4);
+  right: var(--espacio-4);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px; /* objetivo táctil mínimo AA */
+  font-size: var(--texto-xl);
+  line-height: 1;
+  color: var(--texto-invertido);
+  background-color: var(--color-tinta);
+  border: 2px solid var(--texto-invertido);
+  border-radius: var(--radio-redondo);
+  cursor: pointer;
+  transition: background-color var(--transicion), transform var(--transicion);
+}
+
+.lightbox__cerrar:hover {
+  background-color: var(--acento);
+}
+
+.lightbox__cerrar:focus-visible {
+  outline: 3px solid var(--acento-suave);
+  outline-offset: 2px;
+}
+
+.lightbox__cerrar:active {
+  transform: scale(0.95);
+}
+
+/* Navegación prev/next: escritorio a los lados, apilada abajo en móvil */
+.lightbox__nav {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--espacio-4);
+  padding: var(--espacio-4);
+  pointer-events: none; /* solo los botones reciben clicks */
+}
+
+.lightbox__nav-boton {
+  pointer-events: auto;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px; /* objetivo táctil mínimo AA */
+  font-size: var(--texto-xl);
+  line-height: 1;
+  color: var(--texto-invertido);
+  background-color: rgba(26, 23, 20, 0.85);
+  border: 2px solid var(--texto-invertido);
+  border-radius: var(--radio-redondo);
+  cursor: pointer;
+  transition: background-color var(--transicion), transform var(--transicion);
+}
+
+.lightbox__nav-boton:hover {
+  background-color: var(--acento);
+}
+
+.lightbox__nav-boton:focus-visible {
+  outline: 3px solid var(--acento-suave);
+  outline-offset: 2px;
+}
+
+.lightbox__nav-boton:active {
+  transform: scale(0.95);
+}
+
+@media (min-width: 640px) {
+  /* Tableta+: los botones prev/next se separan a los bordes y se
+     centran verticalmente respecto al overlay completo, no solo abajo */
+  .lightbox__nav {
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: var(--espacio-5);
+  }
+
+  .lightbox__nav-boton {
+    width: 52px;
+    height: 52px;
+    font-size: var(--texto-2xl);
+  }
+
+  .lightbox__contenido {
+    flex-direction: row; /* imagen a la izquierda, pie a la derecha */
+    max-height: 80dvh;
+  }
+
+  .lightbox__imagen {
+    max-width: 60%;
+    max-height: 80dvh;
+  }
+
+  .lightbox__pie {
+    max-width: 22rem;
+    padding: var(--espacio-5);
+  }
+}
+
+/* Sin animación para quien pide menos movimiento (ver regla global arriba,
+   esta la refuerza explícitamente para el toggle de visibilidad) */
+@media (prefers-reduced-motion: reduce) {
+  .lightbox,
+  .lightbox--visible,
+  .lightbox__contenido,
+  .lightbox--visible .lightbox__contenido {
+    transition: none;
+  }
+}

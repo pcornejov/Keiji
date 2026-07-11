@@ -880,3 +880,190 @@ a.card p {
     font-size: var(--texto-md);
   }
 }
+
+/* ==========================================================================
+   ITERACIÓN 3 — Página /personajes/ (grid de cards desde personajes.json)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   GRUPO DE PERSONAJES — sección por tipo (Aliados / Demonios / Secundarios)
+   --------------------------------------------------------------------------
+   Estructura HTML esperada por grupo (el h2 reutiliza .seccion-titulo):
+
+   <section class="grupo-personajes" aria-labelledby="titulo-aliados">
+     <h2 class="seccion-titulo" id="titulo-aliados">Aliados</h2>
+     <div class="personajes-grid">
+       … cards …
+     </div>
+   </section>
+   -------------------------------------------------------------------------- */
+.grupo-personajes {
+  margin-bottom: var(--espacio-7);
+}
+
+/* El primer grupo no necesita todo el margen superior que trae
+   .seccion-titulo: lo compactamos un poco */
+.grupo-personajes:first-of-type .seccion-titulo {
+  margin-top: var(--espacio-6);
+}
+
+/* --------------------------------------------------------------------------
+   GRID DE PERSONAJES — 1 col móvil / 2 ≥640px / 3 ≥960px
+   --------------------------------------------------------------------------
+   Estructura HTML esperada de cada card (reutiliza .card / .card__enlace /
+   .card__cuerpo de la base). CON imagen (imagen_url no nulo):
+
+   <article class="card">
+     <a class="card__enlace" href={url_fuente}>
+       <img
+         class="card__retrato"
+         src={imagen_url}
+         alt={`Retrato de ${nombre}`}
+         loading="lazy" width="460" height="613"
+       />
+       <div class="card__cuerpo">
+         <span class="badge badge--aliado">Aliado</span>
+         <h3 class="card__titulo">Keiji</h3>
+         <p class="card__nombre-jp" lang="ja">ケイジ</p>
+         <p class="card__texto card__texto--recortado">Protagonista…</p>
+       </div>
+     </a>
+   </article>
+
+   SIN imagen (imagen_url null): se reemplaza el <img> por el placeholder
+   (mismo aspect-ratio, el grid no se desalinea):
+
+   <div class="card__placeholder" aria-hidden="true">
+     <span class="card__placeholder-inicial">鶏</span>
+   </div>
+
+   En la inicial se puede usar la primera letra del nombre («K», «P»…)
+   o el kanji 鶏 (gallo) como silueta tipográfica común a todos.
+   -------------------------------------------------------------------------- */
+.personajes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espacio-4);
+}
+
+@media (min-width: 640px) {
+  .personajes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--espacio-5);
+  }
+}
+
+@media (min-width: 960px) {
+  .personajes-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Retrato de personaje: vertical 3/4 (los retratos de AniList son
+   verticales), recorte uniforme priorizando cabeza/cresta */
+.card__retrato {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: top;
+  border-bottom: 2px solid var(--color-tinta);
+  background-color: var(--superficie-hundida); /* mientras carga */
+}
+
+/* Placeholder CSS puro para personajes sin imagen: mismo aspect-ratio
+   que .card__retrato, fondo papel hundido y glifo grande en rojo cresta.
+   Es decorativo (aria-hidden): el nombre ya está en el h3. */
+.card__placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  display: grid;
+  place-items: center;
+  background-color: var(--superficie-hundida);
+  /* Trama sutil de líneas diagonales, guiño al entramado de un manga */
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0,
+    transparent 10px,
+    rgba(26, 23, 20, 0.045) 10px,
+    rgba(26, 23, 20, 0.045) 12px
+  );
+  border-bottom: 2px solid var(--color-tinta);
+  user-select: none;
+}
+
+.card__placeholder-inicial {
+  font-family: var(--fuente-display);
+  font-size: clamp(4rem, 3rem + 8vw, 7rem);
+  font-weight: var(--peso-display);
+  line-height: 1;
+  color: var(--acento);
+  /* Ligeramente translúcido: silueta, no protagonista */
+  opacity: 0.55;
+}
+
+/* Nombre japonés bajo el h3: pequeño, en gris humo (AA sobre superficie) */
+.card__nombre-jp {
+  font-size: var(--texto-sm);
+  color: var(--texto-suave);
+}
+
+/* Descripción truncada a ~4 líneas con line-clamp.
+   Fallback: si el navegador no soporta line-clamp, max-height limita
+   el bloque a ~4 líneas y overflow:hidden recorta el resto. */
+.card__texto--recortado {
+  overflow: hidden;
+  max-height: calc(4 * 1.6 * 1em); /* fallback: 4 líneas × line-height 1.6 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+}
+
+@supports (-webkit-line-clamp: 4) {
+  .card__texto--recortado {
+    max-height: none; /* con line-clamp real no hace falta el fallback */
+  }
+}
+
+/* --------------------------------------------------------------------------
+   BADGE DE TIPO — píldora pequeña con el tipo de personaje
+   --------------------------------------------------------------------------
+   Uso: <span class="badge badge--aliado">Aliado</span>
+        <span class="badge badge--demonio">Demonio</span>
+        <span class="badge badge--secundario">Secundario</span>
+
+   Contraste AA verificado:
+   - aliado:      tinta #1a1714 sobre ámbar #e89b3c   ≈ 7.8:1
+   - demonio:     crema #fdfaf2 sobre cresta #c8321e  ≈ 5.1:1
+   - secundario:  crema #fdfaf2 sobre carbón #4a423a  ≈ 9.4:1
+   -------------------------------------------------------------------------- */
+.badge {
+  display: inline-block;
+  align-self: flex-start; /* dentro de .card__cuerpo (flex) no se estira */
+  padding: 2px var(--espacio-3);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-negrita);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--radio-redondo);
+  border: 1px solid var(--color-tinta);
+}
+
+/* Aliado: ámbar plumaje con texto tinta (no hay verde en la paleta;
+   el ámbar mantiene el clima cálido del manga) */
+.badge--aliado {
+  background-color: var(--acento-suave);
+  color: var(--color-tinta);
+}
+
+/* Demonio (kijū): rojo cresta con texto crema */
+.badge--demonio {
+  background-color: var(--acento);
+  color: var(--texto-invertido);
+}
+
+/* Secundario: gris carbón con texto crema */
+.badge--secundario {
+  background-color: var(--color-carbon);
+  color: var(--texto-invertido);
+}

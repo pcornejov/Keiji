@@ -15,4 +15,47 @@ const personajes = defineCollection({
   }),
 });
 
-export const collections = { personajes };
+const capitulos = defineCollection({
+  loader: file('src/data/capitulos.json', {
+    parser: (texto) =>
+      JSON.parse(texto).map((capitulo: { numero: number }) => ({
+        id: String(capitulo.numero),
+        ...capitulo,
+      })),
+  }),
+  schema: z.object({
+    id: z.string(),
+    numero: z.number().int().positive(),
+    titulo: z.string(),
+    titulo_ingles: z.string(),
+    titulo_japones: z.string(),
+    titulo_romaji: z.string(),
+    volumen: z.number().int().positive(),
+    sinopsis: z.string().nullable(),
+    fuente: z.string(),
+  }),
+});
+
+const episodios = defineCollection({
+  loader: file('src/data/episodios.json', {
+    parser: (texto) =>
+      JSON.parse(texto).map((episodio: { numero: number }) => ({
+        id: String(episodio.numero),
+        ...episodio,
+      })),
+  }),
+  schema: z.object({
+    id: z.string(),
+    numero: z.number().int().positive(),
+    titulo: z.string(),
+    titulo_ingles: z.string(),
+    titulo_japones: z.string(),
+    titulo_romaji: z.string(),
+    fecha_emision: z.string(),
+    fecha_emision_japon: z.string(),
+    sinopsis: z.string(),
+    fuente: z.string(),
+  }),
+});
+
+export const collections = { personajes, capitulos, episodios };

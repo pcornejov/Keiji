@@ -1,0 +1,124 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const capitulos = (await getCollection('capitulos'))
+  .map(({ data }) => data)
+  .sort((a, b) => a.numero - b.numero);
+const episodios = (await getCollection('episodios'))
+  .map(({ data }) => data)
+  .sort((a, b) => a.numero - b.numero);
+
+const numerosVolumen = [...new Set(capitulos.map((c) => c.volumen))].sort(
+  (a, b) => a - b,
+);
+const volumenes = numerosVolumen.map((numero) => ({
+  numero,
+  capitulos: capitulos.filter((c) => c.volumen === numero),
+}));
+
+const doscifras = (n: number) => String(n).padStart(2, '0');
+
+// Fechas ISO → «15 mar 2026». timeZone UTC para no desplazar el día.
+const formatoFecha = new Intl.DateTimeFormat('es', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+const fechaLegible = (iso: string) =>
+  formatoFecha.format(new Date(`${iso}T00:00:00Z`)).replaceAll('.', '');
+---
+
+<Base
+  titulo="Capítulos"
+  descripcion="Guía de capítulos y episodios de Rooster Fighter: los 58 capítulos del manga agrupados en 12 volúmenes y los 12 episodios del anime con sus fechas de emisión."
+>
+  <section class="hero">
+    <p class="hero-kicker">Manga y anime</p>
+    <h1>Capítulos y episodios</h1>
+    <p class="hero-texto">
+      La guía completa de <strong>Rooster Fighter</strong>: los
+      {capitulos.length} capítulos del manga publicados hasta ahora, agrupados
+      en sus {volumenes.length} volúmenes, y los {episodios.length} episodios
+      de la primera temporada del anime con sus fechas de emisión.
+    </p>
+  </section>
+
+  <section aria-labelledby="titulo-manga">
+    <h2 class="seccion-titulo" id="titulo-manga">Manga</h2>
+    <p class="seccion-meta">
+      {capitulos.length} capítulos · {volumenes.length} volúmenes
+    </p>
+
+    <div class="tabla-capitulos">
+      {volumenes.map((volumen) => (
+        <details class="volumen" open={volumen.numero === 1 || undefined}>
+          <summary class="volumen__resumen">
+            <span class="volumen__nombre">Volumen {volumen.numero}</span>
+            <span class="volumen__contador">
+              {volumen.capitulos.length}
+              {volumen.capitulos.length === 1 ? 'capítulo' : 'capítulos'}
+            </span>
+          </summary>
+          <ol class="volumen__lista">
+            {volumen.capitulos.map((capitulo) => (
+              <li class="capitulo">
+                <span class="capitulo__numero" aria-hidden="true">
+                  {doscifras(capitulo.numero)}
+                </span>
+                <div class="capitulo__textos">
+                  <p class="capitulo__titulo">{capitulo.titulo}</p>
+                  <p class="capitulo__titulo-jp" lang="ja">
+                    {capitulo.titulo_japones}{' '}
+                    <span lang="ja-Latn">({capitulo.titulo_romaji})</span>
+                  </p>
+                  {capitulo.sinopsis && (
+                    <p class="capitulo__sinopsis">{capitulo.sinopsis}</p>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section aria-labelledby="titulo-anime">
+    <h2 class="seccion-titulo" id="titulo-anime">Anime</h2>
+    <p class="seccion-meta">{episodios.length} episodios · Temporada 1</p>
+
+    <ol class="lista-episodios">
+      {episodios.map((episodio) => (
+        <li class="episodio">
+          <span class="episodio__numero" aria-hidden="true">
+            {doscifras(episodio.numero)}
+          </span>
+          <div class="episodio__cuerpo">
+            <h3 class="episodio__titulo">{episodio.titulo}</h3>
+            <p class="episodio__titulo-jp" lang="ja">
+              {episodio.titulo_japones}{' '}
+              <span lang="ja-Latn">({episodio.titulo_romaji})</span>
+            </p>
+            <p class="episodio__fechas">
+              <span>
+                Estreno EE. UU.:{' '}
+                <time datetime={episodio.fecha_emision}>
+                  {fechaLegible(episodio.fecha_emision)}
+                </time>
+              </span>
+              <span>
+                Japón:{' '}
+                <time datetime={episodio.fecha_emision_japon}>
+                  {fechaLegible(episodio.fecha_emision_japon)}
+                </time>
+              </span>
+            </p>
+            <p class="episodio__sinopsis">{episodio.sinopsis}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+</Base>

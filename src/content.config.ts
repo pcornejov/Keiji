@@ -78,4 +78,24 @@ const galeria = defineCollection({
   }),
 });
 
-export const collections = { personajes, capitulos, episodios, galeria };
+const videos = defineCollection({
+  loader: file('src/data/videos.json', {
+    parser: (texto) =>
+      JSON.parse(texto).map(
+        (registro: { youtube_id: string }, indice: number) => ({
+          id: String(indice),
+          ...registro,
+        }),
+      ),
+  }),
+  schema: z.object({
+    id: z.string(),
+    youtube_id: z.string(),
+    titulo: z.string(),
+    descripcion: z.string(),
+    canal: z.string(),
+    fuente: z.string(),
+  }),
+});
+
+export const collections = { personajes, capitulos, episodios, galeria, videos };

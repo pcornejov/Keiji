@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const videos = await getCollection('videos');
+
+const items = videos.map(({ data }) => {
+  const coincidencia = data.canal.match(/^(.*?)\s*\((https?:\/\/[^)]+)\)$/);
+  const canalNombre = coincidencia ? coincidencia[1] : data.canal;
+  const canalUrl = coincidencia ? coincidencia[2] : null;
+
+  return {
+    youtubeId: data.youtube_id,
+    titulo: data.titulo,
+    descripcion: data.descripcion,
+    canalNombre,
+    canalUrl,
+  };
+});
+---
+
+<Base
+  titulo="Videos"
+  descripcion="Tráilers y PVs oficiales del anime de Rooster Fighter (Niwatori Fighter), embebidos desde los canales oficiales de YouTube."
+>
+  <section class="hero">
+    <p class="hero-kicker">Tráilers y PVs oficiales</p>
+    <h1>Videos</h1>
+    <p class="hero-texto">
+      {items.length} videos oficiales del anuncio y estreno del anime de <strong>Rooster Fighter</strong>,
+      publicados por VIZ Media, HERO'S Web y Anime Times. Todos los reproductores están embebidos
+      desde youtube-nocookie.com, la variante de YouTube sin cookies de rastreo.
+    </p>
+  </section>
+
+  <div class="videos-grid">
+    {items.map((video) => (
+      <article class="video-card">
+        <div class="video-card__embed">
+          <iframe
+            class="video-card__iframe"
+            src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}`}
+            title={`Video: ${video.titulo}`}
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="video-card__cuerpo">
+          <h3 class="video-card__titulo">{video.titulo}</h3>
+          <p class="video-card__canal">
+            {video.canalUrl ? (
+              <a href={video.canalUrl} rel="noopener">{video.canalNombre}</a>
+            ) : (
+              video.canalNombre
+            )}
+          </p>
+          <p class="video-card__texto">{video.descripcion}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+</Base>

@@ -457,3 +457,426 @@ a:hover {
   font-size: var(--texto-sm);
   color: var(--texto-secundario);
 }
+
+/* Variante: la card ES un enlace (uso en portada: <a class="card">).
+   Recibe el padding directo y los mismos estados hover/focus de viñeta. */
+a.card {
+  padding: var(--espacio-4);
+  gap: var(--espacio-2);
+  color: inherit;
+  text-decoration: none;
+}
+
+a.card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--sombra-vineta);
+}
+
+a.card:focus-visible {
+  outline: 3px solid var(--anillo-foco);
+  outline-offset: 2px;
+}
+
+a.card h2,
+a.card h3 {
+  font-size: var(--texto-lg);
+}
+
+a.card p {
+  font-size: var(--texto-sm);
+  color: var(--texto-secundario);
+}
+
+@media (min-width: 640px) {
+  a.card {
+    padding: var(--espacio-5);
+  }
+}
+
+/* ==========================================================================
+   ITERACIÓN 2 — Portada (hero) y ficha de personaje (/keiji/)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   HERO DE PORTADA
+   --------------------------------------------------------------------------
+   Estructura HTML (ya existente en src/pages/index.astro):
+
+   <section class="hero">
+     <p class="hero-kicker">Enciclopedia no oficial</p>
+     <h1>Keiji, el gallo que pelea contra demonios</h1>
+     <p class="hero-texto">…</p>
+     <nav class="hero-acciones" aria-label="Secciones destacadas">
+       <a class="boton" href="/keiji/">Conoce a Keiji</a>
+     </nav>
+   </section>
+   -------------------------------------------------------------------------- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-4);
+  padding-block: var(--espacio-7);
+  max-width: 44rem; /* el texto de portada no debe estirarse a todo el ancho */
+}
+
+@media (min-width: 960px) {
+  .hero {
+    padding-block: var(--espacio-8);
+  }
+}
+
+.hero h1 {
+  font-size: var(--texto-hero);
+}
+
+/* Kicker: etiqueta corta sobre el h1, en rojo cresta y mayúsculas */
+.hero-kicker {
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-negrita);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-acento);
+}
+
+.hero-texto {
+  font-size: var(--texto-md);
+  color: var(--texto-secundario);
+  text-wrap: pretty;
+}
+
+.hero-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-3);
+  margin-top: var(--espacio-2);
+}
+
+/* --------------------------------------------------------------------------
+   BOTÓN — llamada a la acción principal, estilo viñeta
+   Uso: <a class="boton" href="…">Texto</a> (también sirve en <button>)
+   -------------------------------------------------------------------------- */
+.boton {
+  display: inline-block;
+  padding: var(--espacio-3) var(--espacio-5);
+  font-family: var(--fuente-display);
+  font-size: var(--texto-base);
+  font-weight: var(--peso-negrita);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--texto-invertido); /* crema sobre rojo cresta: AA (≈5.1:1) */
+  background-color: var(--acento);
+  border: 2px solid var(--color-tinta);
+  border-radius: var(--radio-md);
+  cursor: pointer;
+  transition: transform var(--transicion), box-shadow var(--transicion),
+              background-color var(--transicion);
+}
+
+.boton:hover {
+  color: var(--texto-invertido);
+  background-color: var(--acento-hover);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--sombra-vineta);
+}
+
+.boton:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+
+/* --------------------------------------------------------------------------
+   GRID DE SECCIONES (portada)
+   Uso: <section class="secciones-grid"> con <a class="card"> hijos.
+   1 columna en móvil, 2 en ≥640px, 3 en ≥960px.
+   -------------------------------------------------------------------------- */
+.secciones-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espacio-4);
+  padding-block: var(--espacio-6);
+}
+
+@media (min-width: 640px) {
+  .secciones-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--espacio-5);
+  }
+}
+
+@media (min-width: 960px) {
+  .secciones-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   HERO DE FICHA DE PERSONAJE (/keiji/)
+   --------------------------------------------------------------------------
+   Estructura HTML esperada:
+
+   <section class="hero-ficha">
+     <img
+       class="hero-ficha__imagen"
+       src="https://…/keiji-retrato.jpg"
+       alt="Keiji, gallo protagonista de Rooster Fighter"
+       width="600" height="800"
+     />
+     <div class="hero-ficha__texto">
+       <p class="hero-kicker">ニワトリ・ファイター — Niwatori Fighter</p>
+       <h1>Keiji</h1>
+       <p class="hero-ficha__descripcion">
+         El gallo que recorre Japón enfrentando a los demonios kijū…
+       </p>
+     </div>
+   </section>
+
+   Responsive: móvil apila imagen arriba / texto abajo;
+   en ≥640px pasan a dos columnas (retrato izquierda, texto derecha).
+   -------------------------------------------------------------------------- */
+.hero-ficha {
+  display: flex;
+  flex-direction: column; /* móvil: imagen arriba */
+  gap: var(--espacio-5);
+  margin-block: var(--espacio-6);
+  padding: var(--espacio-5);
+  background-color: var(--superficie-hundida); /* acento sutil: papel hundido */
+  border-radius: var(--radio-lg);
+  /* Franja roja lateral: acento de cresta sin comprometer contraste */
+  border-left: 6px solid var(--acento);
+}
+
+.hero-ficha__imagen {
+  width: 100%;
+  max-width: 20rem; /* que el retrato no domine en móvil */
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: top; /* prioriza cabeza/cresta al recortar */
+  border: 3px solid var(--color-tinta); /* borde de tinta, marco de viñeta */
+  border-radius: var(--radio-md);
+  background-color: var(--superficie); /* placeholder mientras carga */
+  box-shadow: var(--sombra-md);
+}
+
+.hero-ficha__texto {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-3);
+}
+
+.hero-ficha__texto h1 {
+  font-size: var(--texto-hero);
+}
+
+.hero-ficha__descripcion {
+  font-size: var(--texto-md);
+  color: var(--texto-secundario);
+  max-width: 55ch;
+  text-wrap: pretty;
+}
+
+@media (min-width: 640px) {
+  .hero-ficha {
+    flex-direction: row; /* retrato izquierda, texto derecha */
+    align-items: flex-start;
+    gap: var(--espacio-6);
+    padding: var(--espacio-6);
+  }
+
+  .hero-ficha__imagen {
+    flex-shrink: 0;
+    width: 16rem;
+  }
+
+  .hero-ficha__texto {
+    /* Centra verticalmente el bloque de texto respecto al retrato */
+    align-self: center;
+  }
+}
+
+@media (min-width: 960px) {
+  .hero-ficha__imagen {
+    width: 20rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FICHA DE DATOS RÁPIDOS — estilo tabla de enciclopedia
+   --------------------------------------------------------------------------
+   Estructura HTML esperada (dl con pares dt/dd):
+
+   <dl class="ficha-datos">
+     <div class="ficha-datos__fila">
+       <dt>Nombre japonés</dt>
+       <dd>ケイジ (Keiji)</dd>
+     </div>
+     <div class="ficha-datos__fila">
+       <dt>Especie</dt>
+       <dd>Gallo (Gallus gallus domesticus)</dd>
+     </div>
+     <div class="ficha-datos__fila">
+       <dt>Afiliación</dt>
+       <dd>Ninguna — luchador errante</dd>
+     </div>
+     <div class="ficha-datos__fila">
+       <dt>Fuente</dt>
+       <dd><a href="…">Rooster Fighter — Shu Sakuratani</a></dd>
+     </div>
+   </dl>
+   -------------------------------------------------------------------------- */
+.ficha-datos {
+  margin-block: var(--espacio-5);
+  border: 2px solid var(--color-tinta);
+  border-radius: var(--radio-md);
+  overflow: hidden; /* que las filas respeten las esquinas */
+  background-color: var(--superficie);
+  box-shadow: var(--sombra-sm);
+}
+
+.ficha-datos__fila {
+  display: grid;
+  grid-template-columns: 1fr; /* móvil: etiqueta arriba, valor debajo */
+  gap: var(--espacio-1);
+  padding: var(--espacio-3) var(--espacio-4);
+}
+
+/* Separador y franja alterna, como tabla de enciclopedia impresa */
+.ficha-datos__fila + .ficha-datos__fila {
+  border-top: 1px solid var(--borde);
+}
+
+.ficha-datos__fila:nth-child(even) {
+  background-color: var(--color-papel); /* franja alterna sutil */
+}
+
+.ficha-datos dt {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-negrita);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texto-acento);
+}
+
+.ficha-datos dd {
+  margin: 0;
+  font-size: var(--texto-base);
+  color: var(--texto);
+}
+
+@media (min-width: 640px) {
+  /* Tableta+: etiqueta y valor en dos columnas alineadas */
+  .ficha-datos__fila {
+    grid-template-columns: 12rem 1fr;
+    align-items: baseline;
+    gap: var(--espacio-4);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   TÍTULO DE SECCIÓN — h2 con subrayado rojo cresta, reutilizable
+   Uso: <h2 class="seccion-titulo">Habilidades</h2>
+   -------------------------------------------------------------------------- */
+.seccion-titulo {
+  margin-block: var(--espacio-7) var(--espacio-5);
+  padding-bottom: var(--espacio-2);
+  /* Doble línea: tinta fina a lo ancho + trazo rojo grueso encima */
+  border-bottom: 1px solid var(--borde);
+  position: relative;
+}
+
+.seccion-titulo::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px; /* pisa la línea de tinta */
+  width: 4rem;
+  height: 5px;
+  background-color: var(--acento);
+  border-radius: var(--radio-sm);
+}
+
+/* --------------------------------------------------------------------------
+   GRID DE HABILIDADES — reutiliza .card
+   --------------------------------------------------------------------------
+   Estructura HTML esperada:
+
+   <div class="habilidades-grid">
+     <article class="card">
+       <div class="card__cuerpo">
+         <h3 class="card__titulo">Golpe del gallo divino</h3>
+         <p class="card__texto">Su ataque insignia: una patada devastadora…</p>
+       </div>
+     </article>
+     …
+   </div>
+
+   1 columna en móvil, 2 en ≥640px, 3 en ≥960px.
+   -------------------------------------------------------------------------- */
+.habilidades-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espacio-4);
+}
+
+@media (min-width: 640px) {
+  .habilidades-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--espacio-5);
+  }
+}
+
+@media (min-width: 960px) {
+  .habilidades-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PROSA — bloque de lectura larga (biografía, historia)
+   --------------------------------------------------------------------------
+   Uso: <div class="prosa"> con h3/p/ul/blockquote dentro.
+   Ancho máximo de ~65 caracteres para comodidad de lectura.
+   -------------------------------------------------------------------------- */
+.prosa {
+  max-width: 65ch;
+  font-size: var(--texto-base);
+  line-height: 1.75; /* algo más aireado que el interlineado base */
+}
+
+.prosa p + p {
+  margin-top: var(--espacio-4);
+}
+
+.prosa h3 {
+  margin-block: var(--espacio-6) var(--espacio-3);
+}
+
+.prosa ul,
+.prosa ol {
+  margin-block: var(--espacio-4);
+  padding-left: var(--espacio-5);
+}
+
+.prosa li + li {
+  margin-top: var(--espacio-2);
+}
+
+.prosa li::marker {
+  color: var(--acento); /* viñetas en rojo cresta */
+}
+
+.prosa blockquote {
+  margin-block: var(--espacio-5);
+  padding: var(--espacio-3) var(--espacio-5);
+  border-left: 4px solid var(--acento);
+  background-color: var(--superficie-hundida);
+  border-radius: 0 var(--radio-md) var(--radio-md) 0;
+  color: var(--texto-secundario);
+  font-style: italic;
+}
+
+@media (min-width: 640px) {
+  .prosa {
+    font-size: var(--texto-md);
+  }
+}
